@@ -19,7 +19,7 @@ let  info={
   html: '<h3>欢迎注册您的验证码是：呵呵不告诉你 </h3>' // html body
 }
 
-  transporter.sendMail(info,(err,result)=>{
-    console.log(err,result)
-  });
+transporter.sendMail(info,(err,result)=>{
+  console.log(err,result)
+});
 

@@ -2,7 +2,6 @@
 node 是一个 基于chormeV8的js运行环境 （platfrom runtime）
 1.非阻塞的i/o模型
 2.事件驱动
-优点：高并发处理  单线程
 
 ### node的前世今生
 node 
@@ -34,9 +33,9 @@ AMD CMD commonjs
   b.引入使用模块 const  name=require('模块文件的路径')
 ### 代码中的错误捕获
 1.同步 try catch
-2.异步 错误的回调优先  null 
+2.异步 错误的回调优先
 ### 内置模块
-  fs  文件夹   文件  18 （api）  curd
+  fs  文件夹   文件    curd
 
 ### 第三方模块
 
@@ -60,4 +59,31 @@ nodemailer   用来发送邮件
 3.查询资料了解seo 以及爬虫
 4.预习内置模块  queryString  URL
 
+## node02
 
+### 爬虫（request cheerio）
+1. 爬取网站的相关文件 request
+2. 分析文件内容获取有效信息  cheerio
+3. 下载图片  
+### url
+统一资源定位符 
+http://www.baidu.com
+http://www.baidu.com:80
+http://www.baidu.com:80/admin/login
+http://127.0.0.1:80/admin/login
+dns 服务器
+
+url.parse()
+
+url.format()
+
+### querystring
+parse()  stringify()  escape()  unescape()
+
+### path
+__dirname 当前文件所在的路径
+path.join()  路径拼接
+
+### express 
+
+http://www.expressjs.com.cn/

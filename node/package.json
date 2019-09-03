@@ -10,6 +10,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "nodemailer": "^6.3.0"
+    "cheerio": "^1.0.0-rc.3",
+    "nodemailer": "^6.3.0",
+    "request": "^2.88.0"
   }
 }
