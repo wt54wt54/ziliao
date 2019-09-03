@@ -84,6 +84,53 @@ parse()  stringify()  escape()  unescape()
 __dirname 当前文件所在的路径
 path.join()  路径拼接
 
-### express 
 
+#### api
+前后端实现交互的工具
+api接口的4要素
+1. url
+2. method get  post()
+3. params  参数  数据类型
+4. response 返回数据
+
+前端：调用接口 传递参数  根据返回数据做响应处理
+后端： 1.接受数据 2.处理数据 3. 返回数据
+
+### express koa
 http://www.expressjs.com.cn/
+#### 基本使用
+const express = require('express')
+const app = express()
+app.get('/login',()=>{
+
+})
+
+app.listen(3000,()=>{
+  
+})
+#### 参数传递
+1. get  req.query
+2. post req.body  json   x-www-form-urlencode
+express 本身不能解析 post数据  需要body-parser插件
+
+#### 静态资源路径（静态服务器）www
+app.use('/',express.static(文件夹的绝对路径))
+ 
+#### 路由
+使用类似于app的创建
+api按照功能进行拆分
+const router = express.Router()
+router.get('/login',(req,res)=>{})
+module.exports= router
+
+引入路由  
+const xxxRouter = require('path')
+app.use('/admin',xxxRouter)
+#### 名字解析 
+前台  使用者       home 
+后台  xxx管理后台  admin
+前端 
+后端
+
+
+
