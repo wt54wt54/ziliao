@@ -147,7 +147,10 @@ app.use('/admin',xxxRouter)
 ####  数据库
 mysql    关系型数据库 （多表关联）
 mongodb  非关系型数据库  （文档型数据库） 每一条数据是类json结构 可以存任何东西
-
+mongoose  一个模块用来在node中操作数据库 
+mongodb   文档型数据库
+mongo     cmd 命令  命令行中操作数据库
+mongod    cmd 命令  启动数据库
 #### 安装mongodb
 1. 下载安装
 2.  坑1：2个 v 取消
@@ -162,13 +165,67 @@ mongodb  非关系型数据库  （文档型数据库） 每一条数据是类js
 db  查看当前使用数据库
 show dbs  显示所有数据库
 use dbname  新建一个数据库（临时数据库） 切换数据库
-db.dropdatabase 删除数据库
+db.dropDatabase() 删除数据库
+
+mac 安装
+1.先安装xcode
+2.usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+homebrew
+brew -v
+brew install  mongodb
 
 ##### collection（集合 类似于表）
 
 ##### document(文档 就是 数据)
 
+###### 查询 (read )
+db.集合名.find() 查询所有
+db.集合名.find().pretty() 查询所有 格式化
+###### 插入 (create)
+db.集合名.insert({}) 插入一条
+db.集合名.insert([{},{}]) 插入多条
+插入的每一条数据都是一个对象  可以插入任何数据  包扩 arr  obj
+没有表头的概念  每一条数据内容都可以不一样
+默认主键 _id 
+###### 更新 （update）
+db.user.save({})  插入数据的id 如果已存在 是更新  如果不存在相当于创建
+db.user.update(查询条件,是修改的数据,是否修改全部)
+db.user.update({age:999},{$set:{age:10}},{multi:true})
+###### 删除 （del  remove unlink）
+db.user.remove(条件)
+db.user.remove({}) 全部删除
+###### 条件
+固值  {age:555}
+
+范值  {age:{$gt:555}} $gte $lt  $lte  $ne 
+交并集查询 $and  $or
+      {$and:[{age:{$gt:100}},{age:{$lt:888}}]}
+
+###### 分页
+pageSize 每页几条
+page 第几页
+10    3   4
+1-3
+4-6
+7-9
+10 
+db.user.find().skip((page-1)*pageSize).limit(pageSize)
 ####  node 来操纵数据库
+1. 和数据库连接
+```js
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/1913',{ useNewUrlParser: true });
+var db = mongoose.connection;
+db.on('error', (err)=>{
+  console.log('db err')
+});
+db.once('open', function() {
+  console.log('db ok')
+});
+```
+2. 创建schema对象
+3. 将schema对象转化为数据模型
+4. 调用模型下的方法操作数据库
 
 ### 作业
 用户登录注册  数据库版
