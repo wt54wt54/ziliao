@@ -40,7 +40,7 @@ var User = mongoose.model('child', userSchema);
 //   console.log('出错了',err)
 // })
 
-User.updateOne({age:16},{$set:{pass:'sdfsfsfsfsf'}})
+User.updateOne({age:160},{$set:{name:'123'}})
 .then((data)=>{
   console.log(data)
 })
