@@ -11,9 +11,9 @@ router.get('/checkMail',(req,res)=>{
   UserModel.find({us})
   .then((data)=>{
     if(data.length){
-      res.send({err:0,msg:'邮箱可用'})
+      res.send({err:-1,msg:'邮箱已占用'})  
     }else{
-      res.send({err:-1,msg:'邮箱已占用'})
+      res.send({err:0,msg:'邮箱可用'})
     }
   })
   .catch((err)=>{

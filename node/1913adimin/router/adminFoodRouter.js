@@ -8,7 +8,7 @@ router.get('/getFoods',(req,res)=>{
      res.send({err:0,msg:'获取信息ok',list:data})
   })
 })
-//分页 + 分类
+//分页 + 分类 + 关键字
 router.get('/getFoodsByPage',(req,res)=>{
   let page = req.query.page||1
   let pageSize = req.query.pageSize||3
@@ -43,13 +43,31 @@ router.get('/delFood',(req,res)=>{
   })
 })
 // 分类查询 
-router.get('/getFoodsByType',(req,res)=>{
-  let {foodType} = req.query
-  FoodModel.find({foodType})
+// router.get('/getFoodsByType',(req,res)=>{
+//   let {foodType} = req.query
+//   FoodModel.find({foodType})
+//   .then((data)=>{
+//     res.send({err:0,msg:'获取信息ok',list:data})
+
+//   })
+// })
+
+// 关键字查询
+router.get('/getFoodByKw',(req,res)=>{
+  let {kw} = req.query
+  let reg=new RegExp(kw)  //创建正则对象
+  FoodModel.find({$or:[{name:{$regex:reg}},{desc:{$regex:reg}}]})
   .then((data)=>{
     res.send({err:0,msg:'获取信息ok',list:data})
-
   })
-
+})
+// 修改
+router.get('/updateFood',(req,res)=>{
+  let {_id,name,price,imgPath,foodType,desc}= req.query  
+  FoodModel.updateOne({_id:_id},{name,price,imgPath,foodType,desc})
+  .then((data)=>{
+     console.log('update',data)
+     res.send({err:0,msg:'updateok'})
+  })
 })
 module.exports = router
