@@ -5,6 +5,7 @@ const path = require('path')
 const multer =require('multer')
 router.post('/img',multer().single('hehe'),(req,res)=>{
   console.log(req.file)
+  //接受上传图片数据信息
   let {buffer,mimetype,originalname} = req.file
   // 类型判断
   let types=['gif','jpg','jpeg','png']

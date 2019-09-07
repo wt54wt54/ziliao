@@ -326,3 +326,20 @@ node server.js  ->nodemon server.js
 2.通过ajax上传图片
 3.接受返回结果显示缩略图
 
+### 跨域问题
+jsonp cors  必须写api的后端参与
+服务器代理  服务器之间请求没有跨域问题
+
+### 鉴权
+jwt  uid
+1.7天免登陆
+  前端做的事情
+   1.login  成功 获取token 令牌 钥匙 
+   2.调用接口携带token 
+  后端
+   1.产生token 某些加密算法
+   2.验证token的合法性 
+2.单点登陆
+3.多点登陆
+cookie+session
+

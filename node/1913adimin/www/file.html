@@ -37,12 +37,13 @@ function upload(){
       method:'POST',
       url:serverPath+'/admin/file/img',
       data:formdata,
-      processData:false,
-      contentType:false,
-      cache:false,
+      processData:false,//不对数据进行处理
+      contentType:false,//不设置上传文件类型
+      cache:false,// 缓存
       success(data){
           console.log(data)
         if(data.err === 0){
+          // /xxx/xxx/xx.jpg
           $('img').attr('src',data.imgPath)
         }else{
           alert(data.msg)

@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const Mail = require('../utils/mail')
 const UserModel = require('../db/model/userModel')
+const Jwt = require('../utils/jwt')
 let codes={} //保存产生的验证码
 // [{1111@qq.com:1234},{2222@qq.com:5786}]
 // 引入用户的数据模型
@@ -67,13 +68,26 @@ if(Number(code) === Number(codes[us])){
   })
 })
 
-//登录接口  
+/**
+ * @api {get} /admin/uesr/login  用户登录
+ * @apiName login
+ * @apiGroup User
+ *
+ * @apiParam {String} us 用户账号
+ * @apiParam {String} ps 用户密码.
+ *
+ * @apiSuccess {Number} err 状态码
+ * @apiSuccess {String} msg  msg.
+ * @apiSuccess {String} token  token  .
+ */
+
 router.get('/login',(req,res)=>{
    let {us,ps} = req.query
    UserModel.findOne({us,ps})
    .then((data)=>{
      if(data){
-      res.send({err:0,msg:'login ok'})
+      let token=Jwt.createToken({uid:data._id},7*24*60*60)
+      res.send({err:0,msg:'login ok',token:token})
      }else{
       res.send({err:-2,msg:'login nook'})
      }
