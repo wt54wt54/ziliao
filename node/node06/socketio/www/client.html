@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>socket.io</title>
+  <script src="./socket.io.js" charset="utf-8"></script>
+</head>
+<body>
+
+  <script>
+    var socket = io.connect('http://localhost:8081');
+    socket.emit('hehe','你好')
+    socket.on('haha',(msg)=>{
+      console.log(msg)
+    })
+  </script>
+</body>
+</html>
