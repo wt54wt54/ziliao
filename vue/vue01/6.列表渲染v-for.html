@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>第一个vue项目</title>
+  <script src="../base//vue.js"></script>
+  <style>
+    .demo{
+      width: 100px;
+      height: 100px;
+      background: red;
+    }
+  </style>
+</head>
+<body>
+<div id='app'>
+  <ul>
+    <!-- <li v-for='item in list'>
+      {{item}}
+    </li> -->
+    <!-- <li v-for = '(item,index) of list'>
+      {{item}}+{{index}}
+    </li> -->
+    <!-- <li v-for = "(value,key,index) in obj">
+      {{index}}.{{key}}:{{value}}
+    </li> -->
+    <!-- <li v-for='item in nums'>{{item}}</li> -->
+    <!-- <li v-for ='item in string'>{{item}}</li> -->
+    <table>
+      <tr v-for=''>
+        <td v-for></td>
+      </tr>
+    </table>
+  </ul>
+</div>
+<script>
+  new Vue({
+    el:'#app',
+    data:{
+      list:['爱情','科幻','悬疑','动作'],
+      obj:{us:'wangyi',ps:123,sex:0,age:1},
+      nums:100,
+      string:'1sjflsjfslkjflf'
+    }
+  })
+/*
+v-for = "(item,index) of/in list"  item 循环的每一项  index 下标  of /in 关键字 list 循环的数据源
+99乘法表
+课程变
+*/
+</script>
+</body>
+</html>

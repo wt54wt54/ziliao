@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>第一个vue项目</title>
+  <script src="../base//vue.js"></script>
+  <style>
+    .demo{
+      width: 100px;
+      height: 100px;
+      background: red;
+    }
+  </style>
+</head>
+<body>
+<div id='app'>
+    <div class='demo' v-if='toggle'>
+
+    </div>
+    <!-- <button v-on:click='toggleEvent(5,6,$event)'>toggle</button> -->
+    <button @click='toggleEvent(5,6,$event)'>toggle</button>
+</div>
+<script>
+  new Vue({
+    el:'#app',
+    data:{
+     toggle:true   
+    },
+    methods: {
+      toggleEvent(num1,num2,e){
+        this.toggle=!this.toggle
+        console.log(num1,num2,e)
+      }
+    },
+  })
+/*
+vue 中的事件  
+1. v-on:事件名 
+2. 事件处理函数卸载methods里面
+3. 默认参数是事件对象 如果与其他参数共同使用 需要通过$event 手动传递事件对象
+4. 简写  v-on:cliek  =@click
+*/
+</script>
+</body>
+</html>
