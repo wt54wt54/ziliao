@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>第一个vue项目</title>
+  <script src="../base//vue.js"></script>
+  <style>
+
+  </style>
+</head>
+<body>
+<div id='app'>
+  {{name}}
+  <hehe></hehe>
+</div>
+
+
+<template id='tp1'>
+  <div>
+      <span>hehe</span>
+      <hr>
+      {{name}}
+      <button @click='test'></button>
+    
+  </div>
+</template>
+<script>
+
+  Vue.component('hehe',{
+    template:'#tp1',
+    data(){
+      return{
+        name:'呵呵哒'
+      }
+    },
+    methods: {
+      test(){
+        alert(this.name)
+      }
+    },
+  })
+
+  new Vue({
+    el:'#app',
+    data:{
+      name:'韩梅梅'
+    }
+  })
+/*
+组件不能使用实例的data
+实例不能使用组件的data
+组件的data是一个函数 return 一个对象  就是数据
+实例里的data 直接是一个对象
+*/
+</script>
+</body>
+</html>

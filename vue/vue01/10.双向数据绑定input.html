@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>第一个vue项目</title>
+  <script src="../base//vue.js"></script>
+  <style>
+    .demo{
+      width: 100px;
+      height: 100px;
+      background: red;
+    }
+  </style>
+</head>
+<body>
+<div id='app'>
+ <input type="text" v-model='string'>
+  {{string}}
+</div>
+<script>
+  new Vue({
+    el:'#app',
+    data:{
+      string:'真实的魔鬼游戏' 
+    },
+
+  })
+/*
+双向数据绑定 只有表单元素能用 v-model 将表单元素的value 和 data里的数据进行绑定
+vm->v  数据改变页面自动更新
+v->vm   页面发生改变 vm中的数据也发生改变  
+*/
+</script>
+</body>
+</html>

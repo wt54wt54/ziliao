@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>第一个vue项目</title>
+  <script src="../base//vue.js"></script>
+  <style>
+    .red{
+      width: 100px;
+      height: 100px;
+      background: red;
+    }
+    .blue{
+      width: 100px;
+      height: 100px;
+      background: blue;
+    }
+  </style>
+</head>
+<body>
+<div id='app'>
+    <div v-bind:class='state?"red":"blue"' >
+
+    </div>
+    <div v-bind:style='styleobj' >
+
+    </div>
+    <img :src="state?imgs[0]:imgs[1]" alt="">
+    <button @click='toggle'>change</button>
+    <button @click='changeSate'>changeState</button>
+
+</div>
+<script>
+  new Vue({
+    el:'#app',
+    data:{
+      color:'blue',
+      state:true,
+      styleobj:{
+        background:'skyblue',
+        height:'100px',
+        width:'100px'
+      },
+      imgs:[
+      'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=569795876,863524472&fm=26&gp=0.jpg',
+      'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=139846096,2652503132&fm=26&gp=0.jpg'
+      ]
+    },
+    methods: {
+      changeSate(){
+        this.state=!this.state
+      },
+      toggle(){
+        if(this.color==='red'){
+          this.color = 'blue'
+        }else{
+          this.color = 'red'
+        }
+      }
+    },
+
+  })
+/*
+标签的属性默认是字符串  如果想属性 根变量或者表达式 v-bind:属性名(自定义属性)
+：属性名  = v-bind:属性名
+*/
+</script>
+</body>
+</html>

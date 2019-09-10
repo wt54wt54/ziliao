@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>第一个vue项目</title>
+  <script src="../base//vue.js"></script>
+  <style>
+
+  </style>
+</head>
+<body>
+<div id='app'>
+  <hehe></hehe>
+  <hehe></hehe>
+</div>
+<script>
+
+  Vue.component('hehe',{
+    template:'<h1><span>你好世界</span></h1>'
+  })
+
+  new Vue({
+    el:'#app'
+  })
+/*
+创建并注册组件
+Vue.component('组件名',{配置项})
+将组件名当成标签名使用  hehe -><hehe></hehe>
+*/
+</script>
+</body>
+</html>

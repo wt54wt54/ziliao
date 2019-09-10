@@ -57,4 +57,31 @@ hehe
 1.对开发者来说  从此之后远离dom ，增加操作数据
 vue 将开发者的精力从dom操作转移到了数据操作
 2.对页面运行效率 通过虚拟dom提高页面的运行效率 
+#### vue 的实例
+new Vue({
+  el:'#app',
+  data:{
+    name:''
+  },
+  methods:{
+    toggle(){
+
+    }
+  }
+})
+#### vue基本指令
+v-html
+v-text
+v-if、v-show
+v-for
+v-on:click
+v-bind 属性绑定
+
+##### vue特点
+1.数据的响应式 数据变页面自动变
+2.组件化 模块化
+
+#### 组件
+1.全局组件
+2.局部组件
 

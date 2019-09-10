@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>第一个vue项目</title>
+  <script src="../base//vue.js"></script>
+  <style>
+    *{
+      padding: 0px;
+      margin: 0px;
+    }
+    .box{
+      width: 300px;
+      height: 400px;
+      border: 1px solid red;
+    }
+    ul{
+      font-size: 0px;
+    }
+    li{
+      font-size: 16px;
+      display: inline-block;
+      width: 100px;
+      height: 80px;
+      background: pink;
+    }
+    .primary{
+      background: lightgreen;
+    }
+    .box div{
+      width: 300px;
+      height: 320px;
+    }
+  </style>
+</head>
+<body>
+<div id='app'>
+ <div class='box'>
+   <ul>
+     <li v-for='item in list'
+         @click='toggle(item)'
+         :class='item===sel?"primary":""'
+     >{{item}}</li>
+
+     <!-- <li @click='toggle(爱情)' :class='爱情===sel:"primary":""'>爱情<li>
+     <li @click='toggle(恐怖)' :class='恐怖===sel:"primary":""'>恐怖</li>
+     <li @click='toggle(动画)' :class='动画===sel:"primary":""'>恐怖<li> -->
+
+   </ul>  
+   <div v-for='item in list'
+        v-if='item == sel'
+   > 
+      {{item}}
+   </div>
+
+ </div>
+
+</div>
+<script>
+  new Vue({
+    el:'#app',
+    data:{
+      list:['爱情','恐怖','动画'],
+      sel:'恐怖'
+    },
+    methods: {
+      toggle(item){
+        this.sel = item
+      }
+    },
+  })
+  /*
+  1. 创建导航
+  2. 创建内容元素
+  3. 点击 之后导航发生改变 有默认项
+  4. 内容容器也一同切换
+  
+  */ 
+</script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>第一个vue项目</title>
+  <script src="../base//vue.js"></script>
+  <style>
+   .red{
+     background: red;
+   }
+   .blue{
+     background: skyblue;
+   }
+  </style>
+</head>
+<body>
+<div id='app'>
+<input type="text" v-model='input'> 
+<button @click='add'>add</button>
+<ul>
+  <li v-for='item,index in list'
+      :class='item.state?"blue":"red"'
+  > {{item.msg}}
+    <button @click='del(index)'>del</button>
+     <span v-if='item.state'>已完成</span>
+     <button v-else @click='finish(index)'>完成</button>
+  </li>
+</ul>
+ {{list}}
+</div>
+<script>
+  new Vue({
+    el:'#app',
+    data:{
+      input:'',
+      list:[{msg:'决战到天明',state:true},
+            {msg:'明天继续',state:false}]
+    },
+    methods: {
+      add(){
+        this.list.push({msg:this.input,state:false})
+      },
+      del(index){
+        console.log(index)
+        this.list.splice(index,1)
+      },
+      finish(index){
+        this.list[index]['state']=true
+      }
+    },
+
+  })
+/*
+ todolist
+ 1.根据数据渲染列表  v 
+ 2.添加事项列表自动添加 v
+ 3.可以删除  v
+ 5.完成未完成状态不一样v
+ 4.可以完成v
+*/
+</script>
+</body>
+</html>
