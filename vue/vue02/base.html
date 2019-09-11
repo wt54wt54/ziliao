@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>第一个vue项目</title>
+  <script src="../base//vue.js"></script>
+</head>
+<body>
+  <div id='app'>
+      {{txt}}
+      {{hehe}}
+  </div>
+  <div id='hehe'>
+    {{txt}}
+  </div>
+  <script>
+    // 配置项
+  let vm =new Vue({
+      el:'#app', //vm和 id=app的元素进行关联
+      data:{
+        txt:'你好世界'
+      }
+  })
+  /*数据绑定
+    viewmodel 里的数据可以通过 插值法 {{}} 直接绑定到页面上
+    方向 是 vm->v
+
+  */
+  </script>
+</body>
+</html>

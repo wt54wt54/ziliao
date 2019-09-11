@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>第一个vue项目</title>
+  <script src="../base//vue.js"></script>
+  <style>
+    .red{
+      background: red;
+    }
+    .blue{
+      background: blue;
+    }
+    .yellow{
+      background: yellow;
+    }
+    .pink{
+      background: pink;
+    }
+    .purple{
+      background: purple;
+    }
+    .green{
+      background: lightseagreen;
+    }
+  </style>
+</head>
+<body>
+  <div id='app'>
+    <select v-model ='colorIndex'>
+      <option :value="index" v-for ='(item,index) in color'>{{item}}</option>
+    </select>
+    <table border>
+      <tr v-for ='(item,index) in tabs' :class='index%2 === 0?color[colorIndex][0]:color[colorIndex][1]'
+          :style='index === selIndex?styleobj:{}'
+          @mousemove='move(index)'
+      > 
+        <td v-for ='tbitem in item'>
+          {{tbitem}}
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <script>
+    // 配置项
+  let vm =new Vue({
+      el:'#app', //vm和 id=app的元素进行关联
+      data:{
+        color:[['red','blue'],['green','purple'],['yellow','pink']],
+        tabs:[[11,12,13],[21,22,23],[31,32,33]],
+        selIndex:2,
+        colorIndex:0,
+        styleobj:{opacity:0.5}
+      },
+      methods: {
+        move(index){
+          console.log(index)
+          this.selIndex = index
+        }
+      },
+  })
+  /*数据绑定
+   1.表格  v
+   2.隔行变色 v
+   3.鼠标滑过有特效
+   4.隔行变色和下拉菜单进行关联
+
+  */
+  </script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>第一个vue项目</title>
+  <script src="../base//vue.js"></script>
+  <style>
+  .father{
+    width: 100px;
+    height: 100px;
+    background: red;
+  }
+  .son{
+    width: 50px;
+    height: 50px;
+    background: green;
+  }
+  </style>
+</head>
+<body>
+  <div id='app'>
+    <father></father>
+  
+  </div>
+
+  <template id='father'>
+    <div class='father'>
+       这里是爸爸
+        <son></son>
+    </div>
+  </template>
+
+  <template id='son'>
+      <div class='son'>
+         这里是son
+      </div>
+  </template>
+  <script>
+  let son = Vue.extend({template:'#son'}) 
+  let father = Vue.extend({template:'#father',components:{son:son}})
+  
+  let vm =new Vue({
+      el:'#app', 
+      components:{
+        father:father
+      }
+  })
+
+  </script>
+</body>
+</html>
