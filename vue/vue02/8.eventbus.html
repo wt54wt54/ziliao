@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>第一个vue项目</title>
+  <script src="../base//vue.js"></script>
+  <style>
+  .test{
+    width: 100px;
+    height: 100px;
+    background: pink;
+  }
+  </style>
+</head>
+<body>
+  <div id='app'>
+      <son1></son1> 
+      <son2></son2>   
+  </div>
+
+  <template id='son1'>
+    <div>
+        <button @click='toggle'>toggle</button>
+    </div>
+  </template>
+  
+  <template id='son2'>
+    <div>
+        <div class='test'
+          v-if='state'
+        ></div>
+    </div>
+  </template>
+
+  <script>
+
+  let  ang = new Vue()
+  // 创建空实例
+  Vue.component('son1',{
+    template:'#son1',
+    methods: {
+      toggle(){
+        console.log('空实例',ang)
+        ang.$emit('hehe',1,5)
+        // 触发空实例上已经注册的事件
+      }
+    },
+  })  
+  Vue.component('son2',{
+    template:'#son2',
+    data(){
+      return{
+        state:true
+      }
+    },
+    methods: {
+      changeState(num1,num2){
+        console.log('触发了',num1,num2)
+        this.state=!this.state
+      }
+    },
+    mounted() {
+      // 组件的虚拟dom 变成真实dom 会自动执行
+      ang.$on('hehe',this.changeState)
+      // 在空实例上注册事件
+    },
+  })
+  
+  let vm =new Vue({
+      el:'#app', //vm和 id=app的元素进行关联
+  })
+
+
+
+  </script>
+</body>
+</html>

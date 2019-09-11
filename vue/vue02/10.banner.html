@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>banner</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.2/css/swiper.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.2/js/swiper.min.js"></script>
+  <script src="../base//vue.js"></script>
+  <style>
+    .swiper-container {
+      width: 600px;
+      height: 300px;
+  }  
+  img{
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div id='app'>
+    <banner></banner>
+    <hr>
+    <!-- <banner></banner> -->
+  </div>
+
+  <template id='banner'>
+    <div class="swiper-container" ref='hehe'>
+        <div class="swiper-wrapper">
+            <div class="swiper-slide" v-for='item  in banners'>
+              <img :src="item" alt="">
+            </div>    
+        </div>
+    </div>
+  </template>
+  <script>
+
+  
+  let vm =new Vue({
+      el:'#app', //vm和 id=app的元素进行关联
+      components:{
+        banner:{
+          template:'#banner',
+          data(){
+            return{
+              banners:[]
+            }
+          },
+          methods: {
+            initData(){
+              setTimeout(()=>{
+                this.banners=['https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=579797974,3881253311&fm=26&gp=0.jpg',
+              'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3197648140,1059193869&fm=26&gp=0.jpg',
+              'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1486513396,554854054&fm=26&gp=0.jpg']
+              },2000)
+            },
+            initBanner(){
+              let el=this.$refs.hehe //获取dom元素
+              var mySwiper = new Swiper (el, {})
+            }
+          },
+          created() {
+            this.initData()
+          },
+          mounted() {
+           
+            console.log(this)
+            // 组件由虚拟dom 转化为真实dom dom加载完毕  自动执行
+            this.initBanner()
+          },
+        }
+      }
+  })
+ 
+  </script>
+</body>
+</html>

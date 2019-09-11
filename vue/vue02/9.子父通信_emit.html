@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>第一个vue项目</title>
+  <script src="../base//vue.js"></script>
+  <style>
+  .father{
+    width: 100px;
+    height: 100px;
+    background: red;
+  }
+  .son{
+    width: 50px;
+    height: 50px;
+    background: green;
+  }
+  </style>
+</head>
+<body>
+  <div id='app'>
+    <div class='father' v-if='state'>
+
+    </div>
+    
+    <son @hehe='fatherFun'></son>
+    <!-- 在组件上加一个自定事件 -->
+  </div>
+
+  <template id='son'>
+    <div class='son'>
+      <button @click='toggle'>toggle</button>
+    </div>
+  </template>
+
+  <script>
+  Vue.component('son',{
+    template:"#son",
+    methods:{
+      toggle(){
+        console.log('子组件的toggle方法')
+        this.$emit('hehe')
+        // 在组件的实例里可以通过 $emit 可以触发在本组件标签上注册的自定义事件
+      }
+    }
+  })
+  let vm =new Vue({
+      el:'#app', 
+      data:{
+        name:'韩梅梅',
+        state:true
+      },
+      methods: {
+        fatherFun(){
+          this.state=!this.state
+        }
+      },
+  })
+
+  </script>
+</body>
+</html>

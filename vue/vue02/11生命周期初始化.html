@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>第一个vue项目</title>
+  <script src="../base//vue.js"></script>
+</head>
+<body>
+  <div id='app'>
+    <hehe></hehe>
+  </div>
+
+  <template id='test'>
+    <div>
+      <p ref='p'>{{name}}</p>
+      <button @click='add'>add</button>
+    </div>
+  </template>
+  <script>
+  Vue.component('hehe',{
+    template:'#test',
+    data(){
+      return{
+        name:1
+      }
+    },
+    methods: {
+      add(){
+        this.name++
+      }
+    },
+    beforeCreate() {
+      // console.log('this',this)
+      // console.log('data',this.name)
+      // console.log('el',this.$refs.p)
+      // 没有 数据  没有dom
+      // console.log('创建之前')
+    },
+    created() {
+      // 数据请求
+      // console.log('this',this)
+      // console.log('data',this.name)
+      // console.log('el',this.$refs)
+      // console.log('el',this.$refs.p)
+      // 有数据  没有dom
+      // this.name='hehe' 修改数据不会触发到更新的生命周期
+      // console.log('创建结束')
+    },
+    beforeMount() {
+
+      // this.name='hehe'
+      // 类似于 created 数据请求
+      // console.log('this',this)
+      // console.log('data',this.name)
+      // console.log('el',this.$refs.p) 更新数据不会触发更新的数据周期
+      // console.log('挂载之前')
+    },
+    mounted() {
+      // this.name='hehe'
+      // 类似于 created 数据请求
+      // console.log('this',this)
+      // console.log('data',this.name)
+      // console.log('el',this.$refs.p)
+      // console.log('挂载结束')
+      // 数据 this  dom 都有  初始化dom的操作  比如初始化swiper
+    },
+    beforeUpdate() {
+      // console.log('this',this)
+      // console.log('data',this.name) //2
+      // console.log('el',this.$refs.p)  //
+      // console.log('el',this.$refs.p.innerHTML) //1
+      // 数据引起的页面更新之前  数据已经更新 dom元素未更新
+      console.log('更新之前')
+    },
+    updated() {
+      // 获取监听数据的变化
+      this.name=Math.random()
+      console.log('this',this)
+      console.log('data',this.name) //2
+      console.log('el',this.$refs.p)  //
+      console.log('el',this.$refs.p.innerHTML) //1
+      // 数据引起的页面更新完毕 数据已经更新 dom元素也已更新
+      console.log('更新之前')
+    },
+    
+  })
+  let vm =new Vue({
+      el:'#app', //vm和 id=app的元素进行关联
+ 
+  })
+
+  </script>
+</body>
+</html>
