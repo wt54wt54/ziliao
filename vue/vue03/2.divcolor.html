@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>第一个vue项目</title>
+  <script src="../base//vue.js"></script>
+  <style>
+    .demo{
+      width: 100px;
+      height: 100px;
+      border: 1px solid red;
+      position: fixed;
+      top: 100px;
+    }
+    .wrapper{
+      height: 8000px;
+    }
+  </style>
+</head>
+<body>
+  <div id='app'>
+    <button @click='toggle'>toggle</button>
+     <div class='wrapper'>
+
+     </div>
+     <box v-if='show'></box>
+  </div>
+  <!-- 父组件容器 -->
+   <template id ='box'>
+     <div class='demo' :style='{background:color}' ref='demo'>
+       你好
+     </div>
+   </template>
+
+   
+  <script>
+    // 配置项
+
+  Vue.component('box',{
+    template:"#box",
+    data(){
+      return{
+        color:'rgba(255,0,0,.5)'
+      }
+    },
+    methods: {
+      changeColor(){
+        console.log(1)
+        let r =parseInt(Math.random()*255)
+        let g =parseInt(Math.random()*255)
+        let b =parseInt(Math.random()*255)
+        let a=Math.random()
+        this.color=`rgba(${r},${g},${b},${a})`
+      }
+    },
+    mounted() {
+      window.addEventListener('scroll',this.changeColor)
+    },
+    beforeDestroy() {
+      console.log('销毁之前')
+      console.log(this.$refs.demo.innerHTML)
+      // 销毁之前
+      // 回顾组件的一生 做一些擦屁股的是事情  全局计时器 全局监听
+      window.removeEventListener('scroll',this.changeColor)
+    },
+    destroyed() {
+      console.log('销毁完毕')
+      console.log(this.$refs.demo.innerHTML)
+    },
+  })
+
+  let vm =new Vue({
+      el:'#app', //vm和 id=app的元素进行关联
+      data:{
+        show:true
+      },
+      methods: {
+        toggle(){
+          this.show=!this.show
+        }
+      },
+  })
+
+  </script>
+</body>
+</html>

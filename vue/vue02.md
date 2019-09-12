@@ -163,6 +163,28 @@ Vue.component('hehe',{ tempalte:'',data:methos})
 3. 有一个div 鼠标的滚轮控制div 随机改变颜色
 4. 预习剩余生命周期
 
+#### vue03
+生命周期
+ 名子         数据      dom      功能
+beforecreate  无       无       无
+* created       有       无       请求数据
+beforeMount   有       无       请求数据
+* mounted       有       有       初始化dom元素
+breforeUpdate 有 更新后 有更新前  监听数据变化 
+updated       有 更新后 有更新后  监听数据变化 
+* breforeDestroy 有      有       擦屁股   计时器  全局监听
+destroyed     有       没有     擦屁股   计时器  全局监听
+
+页面缓存
+keepalive
+
+
+
+
+
+
+
+
 
 
 

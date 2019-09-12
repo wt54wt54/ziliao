@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>第一个vue项目</title>
+  <script src="../base//vue.js"></script>
+</head>
+<body>
+  <div id='app'>
+   <box></box>
+  </div>
+  <!-- 父组件容器 -->
+   <template id ='box'>
+     <div >
+      <m-input @son-add='faAdd'></m-input>
+      <m-list :list='list' :sondel='faDel'></m-list>
+     </div>
+   </template>
+
+   <template id='input'>
+    <div >
+      <input type="text" v-model='inputvalue'/>
+      <button @click='add'>add</button>
+    </div>
+  </template>
+
+  <template id='list'>
+    <ul>
+      <li v-for='(item,index) in list'>
+        {{item.msg}}
+        <span v-if='item.state'>已完成</span>
+        <button v-else>完成</button>
+        <button @click='del'>del</button>
+      </li>
+    </ul>
+  </template>
+  <script>
+    // 配置项
+
+  Vue.component('box',{
+    template:"#box",
+    data(){
+      return{
+        list:[{msg:'123',state:false},{msg:567,state:true}]
+      }
+    },
+    methods: {
+      faDel(index){
+        this.list.splice(index,1)
+      },
+      faAdd(msg){
+        console.log(msg,'调用父组件的方法')
+        this.list.push({msg:msg,state:false})
+      }
+    },
+  })
+  Vue.component('m-input',{
+    template:"#input",
+    data(){
+      return{
+        inputvalue:''
+      }
+    },
+    methods:{
+      add(){
+        this.$emit('son-add',this.inputvalue)
+      }
+    }
+  })
+  Vue.component('m-list',{
+    template:"#list",
+    // props:['list']
+    props:{list:{type:Array},"sondel":{type:Function}},
+    methods:{
+      del(index){
+        this.sondel(index)
+      }
+    }
+  })
+  let vm =new Vue({
+      el:'#app', //vm和 id=app的元素进行关联
+      data:{
+        txt:'你好世界'
+      }
+  })
+
+  </script>
+</body>
+</html>

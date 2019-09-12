@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>第一个vue项目</title>
+  <script src="../base//vue.js"></script>
+</head>
+<body>
+  <div id='app'>
+    <keep-alive include='["hehe"]'>
+      <component :is="state?'hehe':'xixi'"></component>
+    </keep-alive>
+   <!-- <component is="xixi"></component> -->
+   <!-- <div :is="state?'hehe':'xixi'"></div> -->
+   <button @click='toggle'>toggle</button>
+  </div>
+   
+  <script>
+    // 配置项
+    Vue.component('hehe',{
+      template:'<h3>这里是呵呵组件</h3>',
+      created() {
+        console.log('呵呵创建')
+      },
+      activated() {
+         console.log('呵呵激活')
+      },
+      deactivated() {
+         console.log('呵呵失活')
+      },
+    })
+    Vue.component('xixi',{
+      template:'<h3>这里是XIXI组件</h3>',
+      created() {
+        console.log('xixi创建')
+      },
+    })
+  let vm =new Vue({
+      el:'#app', //vm和 id=app的元素进行关联
+      data:{
+        state:true
+      },
+      methods: {
+        toggle(){
+          this.state=!this.state
+        }
+      },
+  })
+/*
+动态组件
+<component is='组件名'>
+通过is 属性指定一个组件名来渲染对应的组件
+keep-alive 可以将组件进行包裹  组件就会被保存到缓存中 不会被销毁
+组件切换执行新的生命周期   deactivated 失活 隐藏  activated激活 显示
+*/ 
+  </script>
+</body>
+</html>
