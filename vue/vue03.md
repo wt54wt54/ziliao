@@ -163,7 +163,7 @@ Vue.component('hehe',{ tempalte:'',data:methos})
 3. 有一个div 鼠标的滚轮控制div 随机改变颜色
 4. 预习剩余生命周期
 
-#### vue03
+### vue03
 生命周期
  名子         数据      dom      功能
 beforecreate  无       无       无
@@ -178,8 +178,80 @@ destroyed     有       没有     擦屁股   计时器  全局监听
 页面缓存
 keepalive
 
+#### vue/cli 脚手架工具
+
+npm install  -g @vue/cli   3.0  2018年下半年  有  2019年初 
+配置插件更方便
+npm install  -g  vue-cli   2.9.6  2017 1018
+vue  命令 
+vue --version
+vue -V  查看vue脚手架工具的版本
+vue create  项目名字
+
+npm run serve  本地服务器启动vue项目
+npm run build  上线前 压缩打包操作
+
+目录结构
+dist 上线压缩代码
+node_modules  插件
+public  公有资源目录
+    index.html 文件 整个vue的项目唯一的html入口文件 启动文件
+src    源码目录
+   assets   资源目录
+   components  组件
+   App.vue    单文件组件
+   main.js    js的入口文件
 
 
+spa 单页面应用
+优点 
+ 只有页面 ‘页面的跳转’ 组件的切换  页面切换流畅
+ 组件开发  组件复用  开发便捷
+缺点 
+  首次加载过慢
+  seo优化不好
+
+mpa 多页面应用 100页面
+缺点  页面切换重新加载不流畅
+100个页面  10k
+mpa 首页 10k  每一个页面10k
+spa 首页 1000k  跳转页面不加载
+### bem 命名法
+button-primary-small
+项目 ：http://ustbhuangyi.com/music/#/recommend
+
+#### 单文件组件
+一个xxx.vue文件就是一个组件
+1. 模板
+```html
+<template>
+  页面基本结构
+</template>  
+```
+2.js vm
+```js
+export default{
+  data:(){}
+  methods:{}
+  mounted(){}
+  ...
+}
+```
+3 本组件的样式
+```css
+<style scoped>
+样式
+</style>
+```
+#### 组件嵌套
+1. 引入组件 import 组件名 from  '组件的路径'
+2. components 注册组件
+3. 把组件名当成标签名使用
+#### 文件引入
+import 变量名 from ‘模块名’ 第三方模块
+import 变量名 from  ‘路径’
+样式文件
+@import  '路径'
 
 
 
