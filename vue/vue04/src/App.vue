@@ -12,10 +12,10 @@
        
      <hr/>
     <router-view ></router-view>
-    <hr>
+    <!-- <hr>
     <router-view name='a'></router-view>
     <hr>
-    <router-view name='b'></router-view>
+    <router-view name='b'></router-view> -->
   </div>
 </template>
 

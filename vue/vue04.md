@@ -312,6 +312,42 @@ params 不能和path同时使用
 this.$router.push({name:'login',params:{us:123,ps:456}})
 this.$route 来接受参数
 
+#### 动态路由
+1. 配置路由表的时候将path配置成动态参数
+{path:'/login',component:Login}  正常路由   localhost:30000/login
+{path:'/login/:hehe/:xixi',component:Login} localhost:30000/login/随意/随意
+动态路由里的信息可以在$route对象下的params 进行获取  
+#### 嵌套路由
+1.在router-view 嵌套router-view
+2.在路由表里通过children 指定嵌套信息
+3.所有的子路由 path 千万不要加/
+
+### 项目
+适配 显示  一套代码  在不同的尺寸上显示ok
+  pc  百分比布局 响应式 媒体查询  flex布局  浮动和定位
+  移动 rem+flex
+  1. 将设备的宽度/num作为根元素的大小
+  设计分辨率  375*667 iphone 6s   750*1134   440
+
+兼容
+  浏览器兼容 
+  swiper 4版本  在ios11 以上  ios10 不支持
+
+#### less 预处理语言   
+变量  @声明变量
+嵌套  等同于sass
+mixin 封装函数的方式封装样式 
+计算  可以做数字变量的计算
+
+rem+less 实现移动端适配规则
+
+
+### 网络请求
+原生ajax 可以用
+jq  可以用 不推荐 
+axios
+fetch
+
 
 
 
