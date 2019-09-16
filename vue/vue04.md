@@ -14,6 +14,7 @@ m（model）v（view）vm（viewmodel）
 {
   tag:'div',
   id:'test',
+  
   class:'hehe',
   style:'color:red',
   text:'hehe',
@@ -252,6 +253,64 @@ import 变量名 from ‘模块名’ 第三方模块
 import 变量名 from  ‘路径’
 样式文件
 @import  '路径'
+
+### vuer04 
+路由 
+1. 控制地址栏的改变 
+   <router-link> </router-link>
+2. 根据地址栏的改变渲染不同的组件
+   <router-view></router-view>
+##### 基本使用
+1. 引入文件 Vue  vue-router
+2. 使用vuerouter  Vue.use(VueRouter)
+3. 引入使用的组件 import Login from './componets/login‘
+4. 创建路由对象 建立url和组件之间的联系
+  const router = new VueRouter({
+    routes:[
+      {
+        path:'/login',
+        component:Login
+      }
+      ....
+    ]
+  })
+  export default router
+5.在实例里注册路由对象
+  new Vue({
+    router:router
+  })
+
+路由表创建并且注册ok之后 提供2个组件
+router-link 等同于 a  可以控制地址栏的改变
+to='/path' 用于控制地址栏的改变
+active-class=’hehe‘ 表示激活状态的类名
+tag='elname' 将router-link渲染为任何元素 
+router-view 在页面上开辟一片空间 用来渲染配置地址栏的组件的组件
+通过 router-link 实现 路由的切换 声明式导航
+
+编程式导航 用js 控制路由的切换
+所有的api  this.$router对象下
+a->b->c->d
+push 会将页面加入到页面的缓存栈 
+replace  不会将页面加入到缓存栈
+go(num)
+goback()
+
+<a href='www.baidu.com'>  声明式
+window.location.href='www.baidu.com'  编程式
+
+命名导航  通过name属性给导航起一个名字 
+可以通过 this.$router.push({name:name}) 进行跳转
+
+命名视图  通过name属性给router-view 指定名字  在一个页面同时渲染多个不同的组件需要用
+
+#### 路由传参
+路由跳转的同时传递参数
+query
+this.$router.push({path:'/login',query:{us:123,ps:456}})
+params 不能和path同时使用
+this.$router.push({name:'login',params:{us:123,ps:456}})
+this.$route 来接受参数
 
 
 
