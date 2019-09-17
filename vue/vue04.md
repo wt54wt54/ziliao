@@ -345,8 +345,61 @@ rem+less 实现移动端适配规则
 ### 网络请求
 原生ajax 可以用
 jq  可以用 不推荐 
-axios
-fetch
+jsonp
+``` js
+npm isntall  jsonp
+import jsonp from jsonp
+jsonp(url,{param:传递回调函数的key},(err,data)=>{
+}) 
+```
+axios 
+```js
+npm install axios
+Vue.prototype.$axios=axios
+this.$axios.get(url,data)
+.then(()=>{})
+拦截器  请求拦截器 响应拦截器
+```
+vue 中跨域
+```js
+vue.config.js
+http://www.baiduc.com
+/hehe/admin/login
+module.exports={
+  devServer:{
+    proxy:{
+      '/hehe':{
+        target:'http://www.baiduc.com',
+        changeOrigin:true,
+        pathRewrite:{
+          '^/hehe':''
+        },
+        '/xixi':{
+        target:'http://www.baiduc.com',
+        changeOrigin:true,
+        pathRewrite:{
+          '^/hehe':''
+        }
+      }
+    }
+  }
+}
+
+```
+图片懒加载
+```
+npm isntall vue-lazyload
+import VueLazyLoad from 'vue-lazyload'
+Vue.use(VueLazyLoad,{})
+v-lazy 来代替:src
+```
+图片的引入
+```
+public 路径下  根路径/使用  变量直接写地址都ok  http
+assets 目下下  相对路径使用  直接写路径ok 变量 不行
+变量 通过import 将图片引入   base64
+```
+
 
 
 
