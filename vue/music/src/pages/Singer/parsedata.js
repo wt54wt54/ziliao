@@ -4,6 +4,10 @@ function avator(mid){
   return `https://y.gtimg.cn/music/photo_new/T001R300x300M000${mid}.jpg?max_age=2592000`
 }
 
+export const avatorUrl = (mid)=>{
+  var mid=mid||'004AlfUb0cVkN1'
+  return `https://y.gtimg.cn/music/photo_new/T001R300x300M000${mid}.jpg?max_age=2592000`
+}
 export const  parseData=(list)=>{
   // 处理数据
   let obj={

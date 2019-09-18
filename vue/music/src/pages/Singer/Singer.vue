@@ -18,6 +18,7 @@
         <ol class='singer-items'>
           <li v-for='(singer,sindex) in item.items'
               :key='sindex'
+              @click="goDetail(singer)"
           >
             <div class='img-box'>
               <img v-lazy="singer.avator" alt="">
@@ -43,6 +44,13 @@
         {{item}}
       </li>
     </ul>
+    <!--详情页的嵌套路由 -->
+    <transition 
+      enter-active-class="animated slideInRight"
+      leave-active-class="animated slideOutRight"
+    >
+      <router-view></router-view>
+    </transition>
   </div>
 </template>
 
@@ -76,6 +84,11 @@ export default {
      }
   },
   methods: {
+    // 跳转详情页
+    goDetail(item){
+      let mid=item.Fsinger_mid
+      this.$router.push(`/singer/${mid}`)
+    },
     // 移动的touch事件
     touchstart(e){
 
@@ -151,7 +164,7 @@ export default {
       }) 
     },
     initBS(){
-      this.bs = new BS(this.$refs.bs,{probeType:3})
+      this.bs = new BS(this.$refs.bs,{probeType:3,click:true})
       this.bs.on('scroll',(pos)=>{
         let arr=this.getHeightArr()
         let y = Math.abs(pos.y)
@@ -222,6 +235,7 @@ A  B  C  D  E  F F
 </script>
 <style lang="less" scoped>
 @import '../../style/index.less';
+@import  '../../../node_modules/animate.css/animate.min.css';
 .singer{
   position: fixed;
   .top(88);
