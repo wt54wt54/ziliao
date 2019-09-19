@@ -21,16 +21,17 @@ const  AdminFoodRouter = require('./router/adminFoodRouter')
 const  AdminFileRouter = require('./router/adminFileRouter')
 app.use('/admin/file',AdminFileRouter)
 app.use('/admin/user',AdminUserRouter)
-app.use('/admin/food',(req,res,next)=>{
-  let {token} = req.query
-  Jwt.verifyToken(token)
-  .then(()=>{
-    next()
-  })
-  .catch((err)=>{
-    res.send({err:-998,msg:'token失效请重新登录'})
-  })
-},AdminFoodRouter)
+app.use('/admin/food',AdminFoodRouter)
+// app.use('/admin/food',(req,res,next)=>{
+//   let {token} = req.query
+//   Jwt.verifyToken(token)
+//   .then(()=>{
+//     next()
+//   })
+//   .catch((err)=>{
+//     res.send({err:-998,msg:'token失效请重新登录'})
+//   })
+// },AdminFoodRouter)
 
 // 代理原理的实现
 app.get('/cors',(req,res)=>{

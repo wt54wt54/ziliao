@@ -403,12 +403,65 @@ assets 目下下  相对路径使用  直接写路径ok 变量 不行
 #### 过度
 
 #### vuex vue 全局状态管理
-
 1. 多组件共享状态（变量） 多个组件共享同样的变量
 2. 一个组件发生改变 其余组件都变
-计数器 num ：1  
-组件 a  显示num
-组件 b  显示num   控制num改变
+
+```
+1.下载vuex
+npm isntall  vuex
+2.创建store对象
+import Vue from 'vue'
+import Vuex from 'vuex'
+Vue.use(Vuex)
+
+const store = new Vuex.Store({
+  state:{},
+  getters:{},
+  mutations:{},
+  actions:{},
+  moudles:{}
+})
+3. vue 的实例里注册
+
+this.$store.state
+this.$store.getters
+this.$store.commit()
+this.$store.dispatch()
+```
+辅助函数  mapstate mapgetters mapMutations mapActions
+分模块  moudles  state 调用需要添加模块名  namespanced：ture
+
+#### 服务上线
+服务器  游戏服务器 web服务器 80 api服务器 3000 
+服务器主机 一台电脑
+服务器 可以是一台电脑 也可以是电脑里的运行的程序
+
+
+1. 服务器主机 是外网 需要一个外网ip  花钱  
+<!-- 47.92.170.186 -->
+通过远程桌面进行连接
+通过网页先连接服务器 我的电脑 -》属性 ->远程设置  v 去掉
+2. 网页 
+3. 服务器软件 apache nginx tomcat  iis
+下载nginx  html  相当于www目录
+进入文件下 start nginx 启动 nginx -s stop 停止
+
+阿里云安全验证有一个安全组实例 控制能访问的端口号
+
+1。前端角度
+将html文件放到 www目录下
+2. 后端
+
+
+a. 数据库上线
+安装mongodb
+先用robot3t测试
+mongod --bind_ip 47.92.170.186
+mongod --bind_ip_all
+b. api 上线
+先安装node
+代码拷贝到服务器
+安装依赖运行api服务器
 
 
 
