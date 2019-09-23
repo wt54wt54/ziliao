@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>第一个vue项目</title>
+
+</head>
+<body>
+  <input type="text" onkeydown='inputChange(this)'>
+  <span></span>
+<script>
+let data={
+  inputValue:''
+}
+let middle=''
+Object.defineProperty(data,'inputValue',{
+  get(){
+    return middle
+  },
+  set(param){
+    middle = param
+    watcher()
+  }
+})
+function inputChange(e){
+  console.log(e)
+  // 将input的值付给inputvalue  会触发set方法
+  data.inputValue=e.value
+}
+function watcher(){
+  // 根据修改后的值控制页面刷新
+  let value=data.inputValue
+  document.getElementsByTagName('span')[0].innerHTML=value
+}
+
+/*
+input 框里的数据发生改变之后页面自动变
+on
+1.处理数据有getter和setter
+2.数据改变 触发set
+3.set通知watcher监听
+4.wacth监听更新页面
+*/ 
+</script>
+</body>
+</html>

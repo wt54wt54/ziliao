@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>第一个vue项目</title>
+  <script src="../base//vue.js"></script>
+</head>
+<body>
+  <div id='app'>
+      {{info.age}}
+      <hr>
+      {{info.name}}
+      <hr>
+      <button @click='add'>add</button> 
+      <button @click='change'>change</button> 
+  </div>
+
+  <script>
+    // 配置项
+  let vm =new Vue({
+      el:'#app',
+      data:{
+        info:{
+          age:1
+        }
+      },
+      methods: {
+        add(){
+          console.log(this)
+          this.info.age++
+        },
+        change(){
+          this.info.name='hehe'
+          console.log(this)
+        }
+      },
+      
+  })
+// 对象 动态添加一个属性  添加的属性没有getter 和setter
+// 数组 动态修改数组的length相关  数据的修改也不会引起页面的变化
+// 没有getter和setter
+// 在生命周期的创建阶段 vue 会用object.definPropty  将data里的数据处理 处理完了就有getter和setter
+
+  </script>
+</body>
+</html>

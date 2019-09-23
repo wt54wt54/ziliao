@@ -462,6 +462,50 @@ b. api 上线
 先安装node
 代码拷贝到服务器
 安装依赖运行api服务器
+### vue响应式原理（双向绑定原理）
+数据变页面变
+数据变页面一定变嘛？什么情况下不会变？怎么解决问题
+data object.defineProty  getter/setter  watcher 通知组件重新渲染
+
+###  diff算法
+
+虚拟dom是什么？ 内存中的一个对象 （可以渲染成真实dom）
+<div class='a'>
+ <p>1</p>
+ <span>2</span>
+</div> 
+修改前的虚拟dom
+{
+  tag:'div',
+  class:'a',
+  chilerd:[
+    {tag:p,txt:1},
+    {tag:sapn,txt:2}
+  ]
+}
+修改后的虚拟dom
+{
+  tag:'div',
+  class:'a',
+  chilerd:[
+    {tag:p,txt:2},
+    {tag:sapn,txt:2}
+  ]
+}
+diff算法 对比修改前后的虚拟dom 寻找差异点  更新差异点
+原始diff （O(n^3)） n dom的节点数  1000*1000*1000  10亿 
+  a         a
+b   c     b   c1
+
+vue优化的diff（>O(n)）
+
+1.同层次对比  tree diff
+2.组件对比    component diff
+3.元素对比    element diff
+
+dom 操作分为3种 移动 添加 删除
+react优化的diff
+angular  ？  diff 脏检查
 
 
 

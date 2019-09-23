@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>第一个vue项目</title>
+
+</head>
+<body>
+
+<script>
+let info={name:'1231'}
+let middle='hehe'
+Object.defineProperty(info,'name',{
+  get(){
+    // 获取值的时候触发
+    console.log('触发get')
+    return middle
+  },
+  set(param){
+    // 修改值的时候触发
+    console.log('触发set',param)
+    middle=param
+  }
+})
+console.log(info)
+console.log(info.name)
+info.name='韩梅梅'
+console.log(info.name)
+</script>
+</body>
+</html>
