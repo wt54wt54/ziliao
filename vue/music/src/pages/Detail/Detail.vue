@@ -8,7 +8,14 @@
       <img :src='avator' alt="">
     </div>
     <div class='detail-list'>
-
+       <ul>
+         <li v-for='(item,index) in list' 
+             :key='index'
+             @click='jump(index)'
+             >
+             {{item.musicData.songname}}
+         </li>
+       </ul>
     </div>
   </div>
 </template>
@@ -18,10 +25,15 @@ import {avatorUrl} from  '../Singer/parsedata.js'
 export default {
   data(){
     return{
-      avator:''
+      avator:'',
+      list:[]
     }
   },
   methods: {
+    jump(index){
+      this.$store.commit('play/setList',this.list)
+      this.$store.commit('play/setCurrentIndex',index)
+    },
     back(){
       // this.$router.back()
       this.$router.go(-1)
@@ -30,6 +42,7 @@ export default {
      let url=`https://c.y.qq.com/v8/fcg-bin/fcg_v8_singer_track_cp.fcg?g_tk=1928093487&inCharset=utf-8&outCharset=utf-8&notice=0&format=jsonp&hostUin=0&needNewCode=0&platform=yqq&order=listen&begin=0&num=80&songstatus=1&singermid=${mid}`
      jsonp(url,{param:'jsonpCallback'},(err,data)=>{
        console.log(data)
+       this.list=data.data.list
      })
     }
   },

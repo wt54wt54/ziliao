@@ -1,7 +1,8 @@
 import Vue from 'vue'
-// import App from './App.vue'//音乐的项目
-import App from  './demo/box.vue'// 小栗子
-import store from  './demo/vuexdemo/store'
+import App from './App.vue'//音乐的项目
+// import App from  './demo/box.vue'// 小栗子
+// import store from  './demo/vuexdemo/store'
+import store from './store/store'
 import router from './router'
 import axios from './base/axios'
 import './style/reset.css'
