@@ -17,10 +17,18 @@
        </div>
        {{currentSong}}
        <div class='bottom'>
-        <audio :src='songurl' controls ref='audio'></audio>
+        <audio :src='songurl' controls ref='audio' 
+         @canplay='canplay'
+         @ended="ended"
+         @timeupdate='timeupdate'
+         ></audio>
+        <MProgress :currentTime='currentTime' :allTime='allTime'
+                   :jump='jump'
+        ></MProgress>
         <button @click='play'>play</button>
         <button @click='next("next")'>下一曲</button>
         <button @click='next("prev")'>上一曲</button>
+        <!-- <button @click='jump'>jump</button> -->
        </div>
 
       
@@ -34,13 +42,18 @@
   </div>
 </template>
 <script>
+// import MProgress from '../../components/m-progress'
+import MProgress from 'components/m-progress'
 import SongPrase from  './songPare'
 import  {ablbumUrl} from '../../base/parsedata'
 import {mapGetters,mapMutations,mapState} from 'vuex'
 import { stat } from 'fs'
 export default {
+  components:{MProgress},
   data(){
     return{
+      currentTime:0,
+      allTime:0,
       playing:false//播放状态
     }
   },
@@ -49,30 +62,43 @@ export default {
     currentSong(newValue,oldValue){
        console.log('当前歌曲发生改变',newValue,oldValue)
       //  歌曲信息发生改变  自动播放
-      this.play()
     }
   },
   methods:{
-    play(){
-      this.playing=!this.playing
-      let audio=this.$refs.audio
-      console.log('播放状态',audio.paused)
-      
-      audio.onended=()=>{
+    timeupdate(e){
+      this.currentTime=e.target.currentTime
+      console.log('播放时间',e.target.currentTime)
+    },
+    ended(){
         console.log('播放结束')
         // 切换下一曲播放
-      }
-      
+        this.next('next')
+      },
+    canplay(){
+      console.log('音乐准备完毕')
+       this.allTime=this.$refs.audio.duration
+       this.play()
+    },
+    jump(time){
+      let audio=this.$refs.audio
+      audio.currentTime=time
+    },
+    play(){
+      let audio=this.$refs.audio
+
+      console.log('播放状态',audio.paused)
+
+      console.log(audio.__proto__)
+      console.log(audio.duration)
       if(audio.paused){
         console.log('准备播放')
         // 歌曲播放需要下载资源 添加一个下载延时处理
         //  监听资源加载完毕
-        setTimeout(()=>{
-           audio.play()
-        },1000)
-        
+        audio.play() 
+        this.playing=true   
       }else{
          audio.pause()
+         this.playing=false
       }
 
     },

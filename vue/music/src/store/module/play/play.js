@@ -10,6 +10,7 @@ export default{
   },
   getters:{
     currentSong(state){
+      // 当前正在播放的歌相关信息
       console.log(state.list,state.currentIndex,'getters')
       return state.list[state.currentIndex]||{}
     }
