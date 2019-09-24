@@ -1,12 +1,31 @@
 <template>
   <div class='play' v-show='songlist.length'>
     <div class='fullScreen' v-if='full'>
-        <button @click='toggle'>v</button>
+       <div class='bg'>
+         <img :src="ablbumUrl" alt="">
+       </div>
+        <div class='top'>
+           <button @click='toggle'>v</button>
+           <h3>{{currentSong.songname}}</h3>
+           <h4>{{currentSong.singernames}}</h4>
+        </div>
+       <div class='middle'>
+         <!-- play 运动 play pause 暂停 -->
+          <div class='cd-wrapper ' :class='cdRun'>
+            <img :src="ablbumUrl" alt="">
+          </div>
+       </div>
+       {{currentSong}}
+       <div class='bottom'>
         <audio :src='songurl' controls ref='audio'></audio>
-        <hr/>
         <button @click='play'>play</button>
         <button @click='next("next")'>下一曲</button>
         <button @click='next("prev")'>上一曲</button>
+       </div>
+
+      
+        <hr/>
+        
     </div>
     <div class='miniScreen' v-else @click='toggle'>
 
@@ -16,15 +35,26 @@
 </template>
 <script>
 import SongPrase from  './songPare'
+import  {ablbumUrl} from '../../base/parsedata'
 import {mapGetters,mapMutations,mapState} from 'vuex'
 import { stat } from 'fs'
 export default {
   data(){
     return{
+      playing:false//播放状态
+    }
+  },
+  watch:{ 
+    // 监听数据的改变
+    currentSong(newValue,oldValue){
+       console.log('当前歌曲发生改变',newValue,oldValue)
+      //  歌曲信息发生改变  自动播放
+      this.play()
     }
   },
   methods:{
     play(){
+      this.playing=!this.playing
       let audio=this.$refs.audio
       console.log('播放状态',audio.paused)
       
@@ -32,13 +62,18 @@ export default {
         console.log('播放结束')
         // 切换下一曲播放
       }
-
+      
       if(audio.paused){
-         audio.play()
+        console.log('准备播放')
+        // 歌曲播放需要下载资源 添加一个下载延时处理
+        //  监听资源加载完毕
+        setTimeout(()=>{
+           audio.play()
+        },1000)
+        
       }else{
          audio.pause()
       }
-  
 
     },
     ...mapMutations({next:'play/changeCurrentIndex',
@@ -49,14 +84,23 @@ export default {
     // }
   },
   computed:{
+    cdRun(){
+      // 控制旋转类名的计算属性
+      return this.playing?'play': 'play pause'
+    },
+    ablbumUrl(){
+      // 计算属性  封装的处理图片的方法
+      return ablbumUrl(this.currentSong.albummid)
+    },
     // ...mapState({songlist:state=> state.play.list}),
     ...mapState({songlist:(state)=>{return state.play.list},
                  full:(state)=>state.play.fullScreen
     }),
-    ...mapGetters(['play/currentSongUrl']),
+    ...mapGetters({currentSong:'play/currentSong'}),
     songurl(){
 
-      let songmid=this['play/currentSongUrl']
+      let songmid=this.currentSong.songmid
+      // 从当前的歌曲信息获取媒体id
       return SongPrase.songUrl(songmid)
     }
   },
@@ -96,11 +140,62 @@ export default {
     // background: red;
     .fullScreen{
        position: fixed;
+      color: #fff;
+      font-size:@fs-s;
       top:0;
       left: 0;
       bottom: 0;
       right: 0;
-      background: red;
+      background:#ccc;
+      .bg{
+        width: 100%;
+        height: 100%;
+        img{
+          width: 100%;
+          height: 100%;
+        }
+        position: absolute;
+        z-index: -1;
+        opacity: 0.9;
+        filter: blur(20px);
+
+      }
+      .top{
+         button{
+           position: absolute;
+           width: 50px;
+           height: 50px;
+           left: 0;
+           right: 10px;
+         }
+         h3{height: 40px;}
+         h4{height: 20px;}
+        text-align: center;
+      }
+      .middle{
+          .w(375);
+          .cd-wrapper{
+            margin: 20px auto;
+            width: 325px;
+            height: 325px;
+            border-radius: 50%;
+            overflow: hidden;
+            img{
+              width: 100%;
+              height: 100%;
+            }
+            &.play{
+                animation: rotate 20s linear infinite ;
+            }
+            &.pause{
+              //  控制动画的播放状态  paused  running 动画
+                animation-play-state: paused;
+            }
+          }
+      }
+      .bottom{
+
+      }
     }
     .miniScreen{
        width: 100%;
@@ -108,6 +203,14 @@ export default {
        background: skyblue;
        position: fixed;
        bottom: 0;
+    }
+    @keyframes rotate {
+       from {
+         transform: rotate(0deg)
+       } 
+       to {
+         transform: rotate(360deg)
+       }
     }
   }
 </style>

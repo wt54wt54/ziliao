@@ -13,7 +13,7 @@
              :key='index'
              @click='jump(index)'
              >
-             {{item.musicData.songname}}
+             {{item.songname}}
          </li>
        </ul>
     </div>
@@ -42,7 +42,18 @@ export default {
      let url=`https://c.y.qq.com/v8/fcg-bin/fcg_v8_singer_track_cp.fcg?g_tk=1928093487&inCharset=utf-8&outCharset=utf-8&notice=0&format=jsonp&hostUin=0&needNewCode=0&platform=yqq&order=listen&begin=0&num=80&songstatus=1&singermid=${mid}`
      jsonp(url,{param:'jsonpCallback'},(err,data)=>{
        console.log(data)
-       this.list=data.data.list
+       let list=data.data.list.map((item)=>{
+        let names =item.musicData.singer.map((item)=>{return item.name})
+         return{
+           albummid:item.musicData.albummid,
+           albumname:item.musicData.albumname,
+           songmid:item.musicData.songmid,
+           songname:item.musicData.songname,
+           singernames:names.join(' ')
+         }
+       })
+       console.log(list)
+       this.list=list
      })
     }
   },

@@ -9,9 +9,9 @@ export default{
     list:[] 
   },
   getters:{
-    currentSongUrl(state){
+    currentSong(state){
       console.log(state.list,state.currentIndex,'getters')
-      return state.list[state.currentIndex].musicData.songmid
+      return state.list[state.currentIndex]||{}
     }
   },
   mutations:{
