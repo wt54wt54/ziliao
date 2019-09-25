@@ -17,14 +17,19 @@
        </div>
        {{currentSong}}
        <div class='bottom'>
-        <audio :src='songurl' controls ref='audio' 
+        <audio :src='songurl' ref='audio' 
          @canplay='canplay'
          @ended="ended"
          @timeupdate='timeupdate'
          ></audio>
+        <MLyric :songmid='currentSong.songmid'></MLyric>
+
         <MProgress :currentTime='currentTime' :allTime='allTime'
                    :jump='jump'
         ></MProgress>
+        <br>
+        <br>
+        <br>
         <button @click='play'>play</button>
         <button @click='next("next")'>下一曲</button>
         <button @click='next("prev")'>上一曲</button>
@@ -45,11 +50,12 @@
 // import MProgress from '../../components/m-progress'
 import MProgress from 'components/m-progress'
 import SongPrase from  './songPare'
+import MLyric from  'components/m-lyric'
 import  {ablbumUrl} from '../../base/parsedata'
 import {mapGetters,mapMutations,mapState} from 'vuex'
 import { stat } from 'fs'
 export default {
-  components:{MProgress},
+  components:{MProgress,MLyric},
   data(){
     return{
       currentTime:0,
@@ -77,11 +83,18 @@ export default {
     canplay(){
       console.log('音乐准备完毕')
        this.allTime=this.$refs.audio.duration
-       this.play()
+       this.autoPlay()
     },
     jump(time){
       let audio=this.$refs.audio
       audio.currentTime=time
+      // this.autoPlay()
+    },
+    autoPlay(){
+      // 调用该方法不做状态判断直接播放
+      let audio=this.$refs.audio
+      this.playing=true
+      audio.play()
     },
     play(){
       let audio=this.$refs.audio

@@ -1,13 +1,19 @@
 <template>
-  <div class='progress'>
-    <!-- <span>{{currentTime|hehe(':')}}</span> -->
+  <div class='progress' >
+    <span>{{time|hehe(':')}}</span>
     <!-- 要处理的数据|过滤器的名 -->
      <div class='progress-wrapper'
-          @touchstart='touchstart'
-          @touchMove='touchmove'
+          ref='progressWrapper'     
      >
-        <div :style="{width:precent}" class='progress-content'></div>
-        <div class='dot'>
+     <!-- 黑色背景 -->
+        <div ref='progressContent' class='progress-content'></div>
+        <!-- 黄条 -->
+        <!-- 小圆点 -->
+        <div class='dot' ref='dot'
+          @touchstart='touchstart'
+          @touchmove ='touchmove'
+          @touchend='touchend'
+         > 
           <div>
           </div>
         </div>
@@ -20,36 +26,80 @@
 </template>
 <script>
 export default {
+  data(){
+    return{
+      touching:false,
+      time:0
+    }
+  },
   props:['currentTime','allTime','jump'],
   filters:{
      hehe(data,tag){
       //  过滤器的第一个参数 就是要处理的数据
        var tag=tag||':'
-       console.log('过滤器的参数',data)
+      //  console.log('过滤器的参数',data)
        let m=parseInt(data/60)<=9?'0'+parseInt(data/60) :parseInt(data/60)
        let s=parseInt(data%60)<=9?'0'+parseInt(data%60):parseInt(data%60)
        return `${m}${tag}${s}`   
      }
   },
+  mounted(){
+    this.touch={}
+    // 按下移动的相关数据
+  },
   methods:{
-    touchstart(e){
-        // 按下事件 获取按下位置 占总位置百分比 计算按下位置的时间
-      
-      let width=e.target.clientWidth
-      let offsetLeft = e.target.offsetLeft
-      let touchX = e.targetTouches[0].pageX
-      let distance =touchX-offsetLeft
-      let time=(distance/width)*this.allTime
-      this.jump(time)
-       console.log(e,width,touchX-offsetLeft)
+    offset(width){
+      //  移动进度条
+      // console.log(2222)
+      this.$refs.progressContent.style.width=width+'px'
+      // 移动小圆球
+      this.$refs.dot.style.transform=`translate3d(${width}px,0,0)`
+ 
     },
-    touchmove(){
+    touchstart(e){
+      // console.log('按下',e)
+      this.touching=true
+      this.touch.startDistance=this.$refs.progressContent.clientWidth 
+      // 记录起始位置
+      this.touch.startX = e.touches[0].pageX
+    },
+    touchmove(e){
 
+      let distance =e.touches[0].pageX-this.touch.startX // 计算移动多少距离
+      //  console.log('移动',distance)
+      distance+=this.touch.startDistance
+      // 边界判断 
+      if(distance>=0&&distance<= this.$refs.progressWrapper.clientWidth){
+         this.offset(distance)
+         this.time=this.allTime*(distance/this.$refs.progressWrapper.clientWidth)
+         
+      }
+     
+    },
+    touchend(){
+      this.jump(this.time)
+      this.touching=false
     },
     move(){
       let time=100
       this.jump(100)
       // 调用父组件传递的方法
+    }
+  },
+  watch:{
+    currentTime(newTime,oldTime){
+      console.log('时间改变') 
+      if(this.touching){
+        return false
+      }
+      this.time=newTime
+       //修改进度条的位置
+       let precent=newTime/this.allTime
+       let width=this.$refs.progressWrapper.clientWidth*precent
+ 
+       
+       this.offset(width)
+       //修改小圆点的位置 
     }
   },
   computed:{
