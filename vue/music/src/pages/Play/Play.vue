@@ -17,12 +17,8 @@
        </div>
        {{currentSong}}
        <div class='bottom'>
-        <audio :src='songurl' ref='audio' 
-         @canplay='canplay'
-         @ended="ended"
-         @timeupdate='timeupdate'
-         ></audio>
-        <MLyric :songmid='currentSong.songmid'></MLyric>
+        
+        <MLyric :songmid='currentSong.songmid' :playing="playing"></MLyric>
 
         <MProgress :currentTime='currentTime' :allTime='allTime'
                    :jump='jump'
@@ -41,8 +37,16 @@
         
     </div>
     <div class='miniScreen' v-else @click='toggle'>
-
+       <img :src="ablbumUrl" alt="">
+       <h3>{{currentSong.songname}}</h3>
+       <h4>{{currentSong.singernames}}</h4>
+       <button @click.stop='play'>play</button>
     </div>
+    <audio :src='songurl' ref='audio' 
+         @canplay='canplay'
+         @ended="ended"
+         @timeupdate='timeupdate'
+         ></audio>
     
   </div>
 </template>
@@ -242,6 +246,11 @@ export default {
        background: skyblue;
        position: fixed;
        bottom: 0;
+       display: flex;
+       img{
+         width:60px;
+         height: 60px;
+       }
     }
     @keyframes rotate {
        from {

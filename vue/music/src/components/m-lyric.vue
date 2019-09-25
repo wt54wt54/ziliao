@@ -13,7 +13,7 @@ export default {
       txt:'暂无歌词'
     }
   },
-  props:['songmid'],
+  props:['songmid','playing'],
   methods:{
     getLyricData(){
       var songmid=this.songmid||'003NGKTc2tabpb'
@@ -24,6 +24,8 @@ export default {
         let lyricstring=Base64.decode(data.lyric)
         // 歌词格式的字符串
         console.log(lyricstring)
+        if(this.lyricObj){this.lyricObj.stop()} 
+        // 创建新的歌词对象发现上一个还存在  将上一个个歌词计时器用stop停掉
         this.lyricObj=new Lyric(lyricstring,(params)=>{
           console.log('歌词播放',params)
           this.txt=params.txt
@@ -36,6 +38,16 @@ export default {
    }
   },
   watch:{
+    playing(newState,oldState){
+      console.log('歌词播放状态',newState,this.lyricObj)
+      if(!this.lyricObj) return false
+      this.lyricObj.togglePlay()
+      // if(newState){
+      //   this.lyricObj.play()
+      // }else{
+      //   this.lyricObj.stop()
+      // }
+    },
     songmid(newmid,oldmid){
       if(newmid===oldmid) return false 
       this.getLyricData()

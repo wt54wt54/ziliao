@@ -33,6 +33,7 @@ export default {
     jump(index){
       this.$store.commit('play/setList',this.list)
       this.$store.commit('play/setCurrentIndex',index)
+      this.$store.commit('play/changeFullScreen',true)
     },
     back(){
       // this.$router.back()
