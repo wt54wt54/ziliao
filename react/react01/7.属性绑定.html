@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="../base/react.min.js"></script>
+  <script src="../base/react-dom.min.js"></script>
+  <script src="../base/browser.min.js"></script>
+  <title>Document</title>
+  <style>
+    .red{
+      width: 100px;
+      height: 100px;
+      background: pink;
+    }
+    .green{
+      width: 100px;
+      height: 100px;
+      background: green;
+    }
+  </style>
+</head>
+<body>
+<div id='app'>
+
+</div>
+<script type='text/babel'>
+
+let Component=React.createClass({
+  getInitialState(){
+    return{
+      toggle:false,
+      style:{width:'100px',height:'100px',background:'red'},
+      url:'https://p0.meituan.net/dpmerchantpic/9f181728a8f570f73249411c83484bb8884562.jpg%40watermark%3D1%26%26r%3D1%26p%3D9%26x%3D2%26y%3D2%26relative%3D1%26o%3D20'
+    }
+  },
+  render(){
+    console.log(this)
+    let {url,style,toggle}=this.state
+    return(
+      <div>
+        {/* <p className='red'>2eeqwe</p>*/}
+       <p className={this.state.toggle?'red':'green'}>12313</p>
+       <div style={this.state.style}>
+       </div>
+       <hr/>
+       <div style={{width:'100px',height:'100px',background:'purple'}}></div>
+       <img src={url} alt=""/>
+      </div>
+    )
+  }
+})
+// react  属性绑定 属性名={表达式}
+ReactDOM.render(<Component/>,app)
+</script>
+</body>
+</html>

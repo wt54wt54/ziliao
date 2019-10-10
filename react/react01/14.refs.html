@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="../base/react.min.js"></script>
+  <script src="../base/react-dom.min.js"></script>
+  <script src="../base/browser.min.js"></script>
+  <title>Document</title>
+  <style>
+    .red{
+      width: 100px;
+      height: 100px;
+      background: pink;
+    }
+    .green{
+      width: 100px;
+      height: 100px;
+      background: green;
+    }
+  </style>
+</head>
+<body>
+<div id='app'>
+
+</div>
+<script type='text/babel'>
+
+let Component=React.createClass({
+
+  render(){
+    console.log(this)
+    return(
+      <div>
+         <div id='hehe'>
+            <span ref='hehe'>123</span>
+            <p ref='xixi'>456</p>
+            <button onClick={()=>{
+              this.refs.son.test()
+            }}>调用子组件</button>
+            <Son ref='son'></Son>
+         </div>
+      </div>
+    )
+  }
+})
+
+let Son=React.createClass({
+  test(){
+    alert('子组件11')
+  },
+  render(){
+   
+    return(
+      <div>
+         <div id='hehe'>
+           <h3>这里是子组件</h3>
+         </div>
+      </div>
+    )
+  }
+})
+// ref 可以绑定一个dom元素  也可以绑定一个组件 可以获取组件内部的所有东西 可以实现父元素控制子元素
+ReactDOM.render(<Component/>,app)
+</script>
+</body>
+</html>

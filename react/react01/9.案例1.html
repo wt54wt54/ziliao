@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="../base/react.min.js"></script>
+  <script src="../base/react-dom.min.js"></script>
+  <script src="../base/browser.min.js"></script>
+  <title>Document</title>
+  <style>
+    .red{
+      width: 100px;
+      height: 100px;
+      background: pink;
+    }
+    .green{
+      width: 100px;
+      height: 100px;
+      background: green;
+    }
+  </style>
+</head>
+<body>
+<div id='app'>
+
+</div>
+<script type='text/babel'>
+
+let Component=React.createClass({
+  getInitialState(){
+    return{
+       name:'韩梅梅',
+       toggle:true
+    }
+  },
+  changeColor(){
+    let toggle=!this.state.toggle
+    this.setState({toggle})
+  },
+  changeName(params){
+   
+    //通知页面改变
+    this.setState({name:params})
+    console.log(this)
+    console.log(this.state.name)
+  },
+  render(){
+    let {name,toggle}=this.state
+    console.log(this)
+    return(
+      <div>
+        <div className={toggle?'red':'green'}>
+        </div>
+        {name}
+        <button onClick={this.changeName.bind(this,'李雷')}>changeName</button>
+        <button onClick={this.changeColor}>toggle</button>
+        <hr/>
+         {!toggle||<div className='red'></div>}
+      </div>
+    )
+  }
+})
+/*
+react 数据变 页面不会直接发生改变  需要执行this.setState({}) this.setState(()=>{ return {}})
+*/ 
+ReactDOM.render(<Component/>,app)
+</script>
+</body>
+</html>

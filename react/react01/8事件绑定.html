@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="../base/react.min.js"></script>
+  <script src="../base/react-dom.min.js"></script>
+  <script src="../base/browser.min.js"></script>
+  <title>Document</title>
+  <style>
+    .red{
+      width: 100px;
+      height: 100px;
+      background: pink;
+    }
+    .green{
+      width: 100px;
+      height: 100px;
+      background: green;
+    }
+  </style>
+</head>
+<body>
+<div id='app'>
+
+</div>
+<script type='text/babel'>
+
+let Component=React.createClass({
+  getInitialState(){
+    return{
+     
+    }
+  },
+  toggle(num1,num2,num3,e){
+    console.log(num1,num2,num3,e)
+    // alert('点到')
+  },
+  render(){
+    console.log(this)
+    return(
+      <div>
+        {/*<button onClick={this.toggle.bind(this,1,2,3)}>toggle</button> */}
+        <button onClick={(e)=>{
+          this.toggle(1,2,3,e)
+        }}>toggle</button> 
+      </div>
+    )
+  }
+})
+/*
+react 中的事件绑定
+事件名和原生js一直  书写方式变成驼峰命名法  on 后首字母大写  onclick  ->onClick
+事件的触发函数后 添加（） 表示直接执行
+默认参数  也是事件对象
+主动传参方式   this.toggle.bind(this,....) 默认的事件对象会出现在参数的最后方
+*/ 
+ReactDOM.render(<Component/>,app)
+</script>
+</body>
+</html>

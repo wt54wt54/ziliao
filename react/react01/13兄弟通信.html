@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="../base/react.min.js"></script>
+  <script src="../base/react-dom.min.js"></script>
+  <script src="../base/browser.min.js"></script>
+  <title>Document</title>
+  <style>
+   .red{
+     background: red;
+     height: 100px;
+   }
+  </style>
+</head>
+<body>
+<div id='app'>
+
+</div>
+<script type='text/babel'>
+var Ba = React.createClass({
+  getInitialState(){
+    return{
+      show:false
+    }
+  },
+  toggle(){
+    let show=!this.state.show
+    this.setState({show})
+  },
+  render(){
+    return(
+      <div>
+        <h1>这里是父组件</h1>
+         <hr/>
+         <hr/>
+         <Son1 toggle={this.toggle}></Son1>
+         <Son2 show={this.state.show}></Son2>
+      </div>
+    )
+  }
+})
+// 有一个按钮 控制子元素2的显示隐藏
+var Son1 = React.createClass({
+  render(){
+    console.log(this,'子组件')
+    return(
+      <div>
+       <button onClick={()=>{
+         this.props.toggle()
+       }}>子组件toggle</button>
+       这里是子组件1
+      </div>
+    )
+  }
+})
+// div被显示隐藏
+var Son2 = React.createClass({
+  render(){
+    console.log(this,'子组件')
+    return(
+      <div>
+         <h4>子组件2</h4>
+         {!this.props.show||<div className='red'></div>}
+      </div>
+    )
+  }
+})
+/*
+1.状态提升  近亲兄弟  找一个公有的父元素
+2.伪事件总线 远亲兄弟通信
+3.全局状态管理  redux
+*/
+ReactDOM.render(<Ba/>,app)
+</script>
+</body>
+</html>

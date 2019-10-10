@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="../base/react.min.js"></script>
+  <script src="../base/react-dom.min.js"></script>
+  <script src="../base/browser.min.js"></script>
+  <title>Document</title>
+  <style>
+   .red{
+     background: red;
+     height: 100px;
+   }
+  </style>
+</head>
+<body>
+<div id='app'>
+
+</div>
+<script type='text/babel'>
+var Ba = React.createClass({
+  getInitialState(){
+    return{
+      show:true
+    }
+  },
+  toggle(){
+    let show=!this.state.show
+    this.setState({show})
+  },
+  render(){
+    return(
+      <div>
+        <h1>这里是父组件</h1>
+         {/*<button onClick={()=>{
+          // 控制父元素值的改变
+           let show=!this.state.show
+           this.setState({show})
+         }}>toggle</button>8*/}
+         {!this.state.show ||<div className='red'></div>}
+         <hr/>
+         <Er hehe={this.toggle}></Er>
+      </div>
+    )
+  }
+})
+var Er = React.createClass({
+  render(){
+    console.log(this,'子组件')
+    return(
+      <div>
+       <button onClick={()=>{
+         this.props.hehe()
+       }}>子组件toggle</button>
+       这里是子组件
+      </div>
+    )
+  }
+})
+// 子组件控制   父组件div的显示隐藏
+// 1 父组件自己控制自己
+// 2.将控制的方法传给子组件调用
+ReactDOM.render(<Ba/>,app)
+</script>
+</body>
+</html>

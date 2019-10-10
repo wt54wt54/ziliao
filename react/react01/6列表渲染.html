@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="../base/react.min.js"></script>
+  <script src="../base/react-dom.min.js"></script>
+  <script src="../base/browser.min.js"></script>
+  <title>Document</title>
+</head>
+<body>
+<div id='app'>
+
+</div>
+<script type='text/babel'>
+
+let Component=React.createClass({
+  getInitialState(){
+    return{
+      obj:{us:123,ps:123},
+      list:['中国机长','我和我的祖国','攀登者']  //[<li>中国机长</li>,<li>我和我的祖国</li>,<li>攀登者</li>]
+    }
+  },
+  render(){
+    console.log(this)
+    return(
+      <div>
+        <ul>
+          <li>xxxx</li>
+          {this.state.list.map((item,index)=>{
+            return (<span>{item}</span>)
+          })}
+
+        </ul>
+        <hr/>
+        {this.state.obj.us}
+      </div>
+    )
+  }
+})
+// react 中绑定数组 会将数组的每一项拆开
+// 对象不能直接绑定使用
+ReactDOM.render(<Component/>,app)
+</script>
+</body>
+</html>

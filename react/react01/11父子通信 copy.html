@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="../base/react.min.js"></script>
+  <script src="../base/react-dom.min.js"></script>
+  <script src="../base/browser.min.js"></script>
+  <title>Document</title>
+  <style>
+   .red{
+     background: red;
+     height: 100px;
+   }
+  </style>
+</head>
+<body>
+<div id='app'>
+
+</div>
+<script type='text/babel'>
+var Ba = React.createClass({
+  getInitialState(){
+    return{
+      show:true
+    }
+  },
+  render(){
+    return(
+      <div>
+        <h1>这里是父组件</h1>
+         <button onClick={()=>{
+          // 控制父元素值的改变
+           let show=!this.state.show
+           this.setState({show})
+         }}>toggle</button>
+         <hr/>
+         <Er show={this.state.show}></Er>
+      </div>
+    )
+  }
+})
+var Er = React.createClass({
+  renderDiv(){
+    console.log(this.props.show)
+    if(!this.props.show) return false
+    return (
+      <div className='red'></div>
+    )
+  },
+  render(){
+    return(
+      <div>
+       这里是子组件
+       {this.renderDiv()}
+      </div>
+    )
+  }
+})
+
+ReactDOM.render(<Ba/>,app)
+</script>
+</body>
+</html>
