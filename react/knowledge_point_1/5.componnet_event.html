@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./base/react.min.js"></script>
+    <script src="./base/react-dom.min.js"></script>
+    <script src="./base/browser.min.js"></script>
+</head>
+
+<style>
+  
+</style>
+
+<body>
+   
+
+
+    <div id="hello"></div>
+
+
+
+    <script type="text/babel">
+
+    let Component=React.createClass({
+        handelClick(){
+         console.log('点到我了')
+        },
+        render(){
+            return (
+                <div>
+                   <button onClick={this.handelClick}>点击事件</button>
+                   <button onDoubleClick={this.handelClick}>点击事件</button>
+                </div>
+            )
+        }
+    })
+
+   ReactDOM.render(<Component/>,hello)
+    </script>
+</body>
+</html>

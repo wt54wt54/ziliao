@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./base/react.min.js"></script>
+    <script src="./base/react-dom.min.js"></script>
+    <script src="./base/browser.min.js"></script>
+</head>
+<body>
+    <div id='app'>
+
+    </div>
+</body>
+<script type='text/babel'>
+//  type='text/babel '必须的用来解析jsx的语法规范
+// react.js  react库文件
+//  react-dom.js  将react产生的虚拟dom 渲染成真实dom
+//  bower.js  解析jsx语法浏览器中解析 以后不用  jsx语法解析放到前端打包的时候 javascript xml
+//  组件的首字母必须是大写
+// react 中的组件当成一个  实例 构造器
+// jsx 参考xml的一套语法规范  标签必须闭合 必须要有一个根元素
+var Component=React.createClass({
+    render(){
+        //返回jsx的标签
+        return (
+            <div>
+                <h1>你好世界</h1>
+                <span>111</span>
+                
+                <hr/>
+            </div>
+                  
+        )
+    }
+})
+
+React.createElement('div',{},[
+    React.createElement('li',{},'你好世界')
+])
+// 将虚拟dom转化为真实dom mounted
+ReactDOM.render(<Component/>,document.getElementById('app'))
+</script>
+
+</script>
+</html>

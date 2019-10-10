@@ -1,0 +1,85 @@
+g<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./base/react.min.js"></script>
+    <script src="./base/react-dom.min.js"></script>
+    <script src="./base/browser.min.js"></script>
+</head>
+
+<style>
+    
+</style>
+
+<body>
+    
+   
+
+    <div id="app"></div>
+
+    
+
+    <script type="text/babel">
+    var Father = React.createClass({
+        render:function () {
+            return (
+                <div>
+                    <p>我是父组件, 下面是我的儿子们：</p>
+                    <Son hairStyle={'小平头'}></Son>
+                    <hr/>
+                    <Son></Son>
+                </div>
+            )
+        }
+    })
+    var Son = React.createClass({
+        // getDefaultProps(){
+        //     // 从效率优化的角度考虑 只执行一次 各个使用的组件之间可以实现共享
+        //     console.log('设置Props默认值')
+        //     return {
+        //         hairStyle:'杀马特'
+        //     }
+        // },
+        getHair(){
+          if (this.props.hairStyle) {
+               return this.props.hairStyle
+          }else{
+              return '呵呵'
+          }
+        },
+        render:function () {
+            return (
+                <div>
+                    <p>这里son</p>
+                    <p>{this.props.hairStyle?this.props.hairStyle:'heheh'}</p>
+                    <p>{this.props.hairStyle||'hehe'}</p>
+                    <p>{this.getHair()}</p>
+                    <p>{!function(obj){
+                        console.log('自执行')
+                        if(obj.props.hairStyle) {
+                            return   1 //obj.props.hairStyle
+                        }else{
+                            return  0 //'光头佬'
+                        }
+                    }(this)}
+                    </p>
+                    <hr/>
+                    <p>{true?'yes':'no'}</p>
+                    <p>{false?'yes':'no'}</p>
+                </div>
+            )
+        }
+    })
+    ReactDOM.render(<Father/>,app)
+
+    // 函数的自执行  通过运算符（+-*/ () %  !） 将匿名变成一个函数表达式 直接➕()执行
+    // +function(){}()
+    // -function(){}()
+    // (function(){})()
+    // !function(){}()
+    </script>
+</body>
+</html>

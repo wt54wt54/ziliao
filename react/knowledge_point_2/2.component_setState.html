@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./base/react.min.js"></script>
+    <script src="./base/react-dom.min.js"></script>
+    <script src="./base/browser.min.js"></script>
+</head>
+<body>
+
+    <div id="app"></div>
+
+    <script type="text/babel">
+       
+        
+        var Gouzi = React.createClass({
+         
+            getInitialState(){
+              return {
+                  doing:'王者荣耀',
+                  age:'16'
+              }
+            },
+            changeState(){
+            //    this.setState({doing:'守望先锋'})
+            this.state.doing='刺激战场'
+            this.setState({})
+            },
+            render:function () {
+                return (
+                    <div>
+                        {this.state.age}
+                        <button onClick = {this.changeState}>切换状态</button>
+                        <p>我正在 {this.state.doing} </p>
+                    </div>
+                )
+            }
+        })
+
+        ReactDOM.render(<Gouzi knowledge = {'英语'} />,document.getElementById("app"))
+        /*
+         react 的数据更新机制和vue不同
+         vue的数据经过  viewmode处理 有了getter 和setter 数据更新触发setter setter触发watcher
+         从而达到数据变页面变
+         react 仅仅是一个view层视图的框架 没有 viewmode  不同通过更该数据触发setter
+         当我们更新完数据之后 需要通过setState（）这个来手动通知 react准备视图更新
+        */
+    </script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./base/react.min.js"></script>
+    <script src="./base/react-dom.min.js"></script>
+    <script src="./base/browser.min.js"></script>
+</head>
+
+<style>
+    
+</style>
+
+<body>  
+    <p> 子组件的属性也有由父组件设置...</p>
+    <hr/>
+
+    <div id="app">
+    </div>
+
+    <script type="text/babel">
+    var Father = React.createClass({
+
+        render () {
+            console.log('father')
+            console.log(this.props)
+            return (
+                <div>
+                    <p>我是父元素</p>
+                 
+                    {[0,1,2].map((item)=>{
+                        return 'hh'+item
+                    })}
+                   { /*<p>我是 {this.props.name}</p>
+                    <p>age:{this.props.age+1}</p>
+                    <p>{this.props.obj}</p>*/}
+                </div>
+            )
+        }
+    })
+    var Son = React.createClass({
+        render () {
+            console.log('son')
+            console.log(this)
+            return (
+                <div>
+                    <p>我是子元素</p>
+                    <p>我是 {this.props.name}</p>
+                    <p>age:{this.props.age+1}</p>
+                   
+                </div>
+            )
+        }
+    })  
+    let obj=[1,2,3]
+     ReactDOM.render(<Father  name='wangyi' age={16}  />,app)
+    // ReactDOM.render(<Father  />,app)
+    </script>
+</body>
+</html>

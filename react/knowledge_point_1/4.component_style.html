@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./base/react.min.js"></script>
+    <script src="./base/react-dom.min.js"></script>
+    <script src="./base/browser.min.js"></script>
+</head>
+
+<style>
+  #big {
+      font-size: 3em;
+  }
+  *[data-hehe] { color: red; }
+
+  .bg-green {
+      background: green;
+  }
+</style>
+
+<body>
+<div id='app'>
+
+</div>
+<script type='text/babel'>
+var Hehe=React.createClass({
+    style:{'box-shadow':'5px 5px 5px pink'},
+    color:{'color':'blue'},
+    render(){
+        console.log(this.style)
+        console.log(this.color)
+        return (
+            <div>
+                <p style={{color:'skyblue'}}  className={this.bg-green} >葬爱家族</p>
+                <p style={this.style} >葬爱家族2</p>
+                <p style={this.color} >葬爱家族3</p>
+            </div>
+        )
+    }
+})
+// 在react中绑定数据用的是 {}
+// 在createClass的配置项中可以声明个中变量  在 render 函数里 通过this 获取
+ReactDOM.render(<Hehe/>,app)
+</script>
+ 
+</body>
+</html>

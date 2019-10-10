@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./base/react.min.js"></script>
+    <script src="./base/react-dom.min.js"></script>
+    <script src="./base/browser.min.js"></script>
+</head>
+<body>
+    <p>因为有些数据是只能自己设置和自己更改的，我们就把这些数据挂载到状态上，getInitialState，组件内部通过this.state来获取</p>
+    <hr>
+    <div id="app"></div>
+
+    <script type="text/babel">
+       
+        var Gouzi = React.createClass({
+            getInitialState(){
+                return {
+                    name:'一百万种可能'
+                }
+            },
+            changeName(){
+                console.log(111)
+               this.state.name='被打'
+               console.log(this.state)
+            },
+            render:function () {
+                console.log(this)
+                return (
+                    <div>
+                      呵呵
+                      {this.state.name}
+                      <hr/>
+                      <button onClick={this.changeName}>change</button>
+                    </div>
+                )
+            }
+        })
+
+        ReactDOM.render(<Gouzi />,app)
+      
+    /*
+    getInitialState react 生命周期第二个
+    功能：设置初始的状态值 state
+    state 组件内部使用 内部进行修改
+    */
+    </script>
+</body>
+</html>

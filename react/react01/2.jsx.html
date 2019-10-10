@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src ='../base/react.min.js'></script>
+  <!-- 提供React 对象  vue.min.js -->
+  <script src ='../base/react-dom.min.js'></script>
+  <!-- 提供了reactdom对象 将虚拟dom 渲染成真实dom-->
+  <script src ='../base/browser.min.js'></script>
+  <!-- 帮助浏览器解析jsx语法 -->
+  <title>Document</title>
+</head>
+<body>
+   <div id='app'>
+
+   </div>
+   <!-- babel 才会用jsx进行解析 -->
+<script type='text/babel'>
+/*
+<div class='abc' id='haha'><span><p>你好</p></span></div>
+*/
+
+// var world = React.createElement('div',{className:'abc',id:'haha'},[
+//     React.createElement('span',null,[
+//       React.createElement('p',null,'你好')
+//     ]),
+  
+// ])
+// 创建一个组件
+var Hehe =React.createClass({
+  render() {
+      return(
+        // jsx
+        <div>
+          <span>
+            <p>
+                你好
+            </p>
+          </span>
+        </div>
+      )
+  },
+})
+
+//利用ReactDOM对象的render方法将组件渲染到某个节点里
+ReactDOM.render(<Hehe/>,document.getElementById("app"))
+/*
+写虚拟dom 需要通过 React.createElement 麻烦
+提供了jsx      javascript xml   作用就是在js中来写标签   严格模式的标签 1. 最外层必须有根元素  2.标签必须闭合 
+语法糖 更加方便甜蜜的书写代码
+*/
+</script>
+</body>
+</html>

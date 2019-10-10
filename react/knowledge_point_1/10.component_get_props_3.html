@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./base/react.min.js"></script>
+    <script src="./base/react-dom.min.js"></script>
+    <script src="./base/browser.min.js"></script>
+</head>
+
+<style>
+    
+</style>
+
+<body>
+    
+    <p> 组件可以通过getDefaultProps钩子函数来进行设置默认的props属性，但是优先级不高，如果有父级组件传入相同属性的话会使用传入的属性</p>
+
+    <hr>
+
+    <div id="app"></div>
+
+    <script type="text/babel">
+   var Father = React.createClass({
+        render () {
+            console.log('father')
+            console.log(this)
+            return (
+                <div>
+                    <p>我是父元素</p>
+                     <Son hairStyle={'小平头'} name={'五好青年'}></Son>
+                </div>
+            )
+        }
+    })
+    var Son = React.createClass({
+        getDefaultProps(){
+            return{
+              hairStyle:'赤橙黄绿青蓝紫',
+              name:'杀马特'
+            }
+        },
+        render () {
+            console.log(this)
+            return (
+                <div>
+                    <p>{this.props.hairStyle}</p>
+                    <p>{this.props.name}</p>
+                </div>
+            )
+        }
+    })
+    ReactDOM.render(<Father/>,app)
+    </script>
+</body>
+</html>

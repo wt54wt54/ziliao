@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./base/react.min.js"></script>
+    <script src="./base/react-dom.min.js"></script>
+    <script src="./base/browser.min.js"></script>
+</head>
+<style>
+   
+</style>
+<body>
+    
+    
+
+    <hr>
+    <div id="app"></div>
+    
+
+
+
+    <script type="text/babel">
+        var Father = React.createClass({
+            getInitialState () {
+                return {
+                    hitnum: 0
+                }
+            },
+            hitSon () {
+                this.setState({hitnum: ++this.state.hitnum})
+            },
+            render () {
+                return (
+                    <div>
+                        <p>我是爸爸</p>
+                        <p><button onClick = {this.hitSon}>打儿子</button></p>
+                        <hr/>
+                        <Son hitnum = {this.state.hitnum}/>
+                    </div>
+                )
+            }
+        })  
+        var Son = React.createClass({
+            componentWillReceiveProps (props, state) {
+                console.log('1.componentWillReceiveProps')
+                //触发： 当外部传入的数据变化的时候
+                //功能： 可以根据变化之后的属性来做一些操作，例如更改状态 
+                //特点： 在这个时候，新属性还没有挂载到组件上,要使用新属性需要从参数props中得到,并且在这里更改状态不会触发生命周期函数重复执行
+                if ( props.hitnum >= 5 && !state.pain ) {
+                    this.setState({pain: true})
+                }
+            },
+            shouldComponentUpdate (props, state) {
+                console.log('2.shouldComponentUpdate')
+                //触发： 属性或者状态变化都会执行
+                //特点： 1. 必须返回，返回true就向下执行，返回false就不更新了 2. 在这里属性和状态还都没有更新，想要使用最新的属性和状态，从参数里取
+                //作用： 可以阻止组件更新，做到性能优化
+                if (props.hitnum >= 5) return true;
+                return false;
+            },
+            componentWillUpdate (props, state) { //beforeUpdate
+                console.log('3.componentWillUpdate')
+                //触发，当shouldComponentUpdate返回true的时候就会触发
+                //作用： 多作一些输出处理，代码调试
+                //特点： 不能去更改状态，也不能阻止更新
+            },
+            getInitialState () {
+                return {
+                    pain: false
+                }
+            },
+            render () {
+                let { pain } = this.state
+                console.log('4.render')
+                return (
+                    <div>
+                       <p>我是儿子</p>
+                       <p>爸爸打了我 {this.props.hitnum} 下</p>
+                       <p>我 { pain || '不' } 疼</p>
+                    </div>
+                )
+            },
+            componentDidUpdate () {//mounted
+                console.log('5.componentDidUpdate')
+                //特点： 可以操作更新后的真实dom了
+            }
+        })
+
+        ReactDOM.render(<Father/>,app)
+
+        
+    </script>
+</body>
+</html>

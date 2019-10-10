@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./base/react.min.js"></script>
+    <script src="./base/react-dom.min.js"></script>
+    <script src="./base/browser.min.js"></script>
+</head>
+
+<style>
+    .comment-box{
+        width: 600px;
+        height: 600px;
+        border: 1px solid #333;
+        padding: 15px;
+        box-sizing: border-box;
+    }
+    .comment-box__title{
+        border-bottom: 1px solid   #ccc;
+        margin: 0;padding: 10px 0;
+    }
+    .comment-item{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .comment-item__info{
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+    }
+    .comment-item__info img{
+        width: 80px;height: 80px;
+        margin-right: 10px;
+    }
+    .comment-form{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+    }
+    .comment-form__text{
+        display: block;
+        width: 100%;
+        height: 150px;
+    }
+</style>
+
+<body>
+   <p>将一个组件渲染到某一个节点里的时候，会将这个节点里原有内容覆盖</p>
+    <p>组件是可以嵌套到另一个组件里的</p>
+    
+    <div id="app">
+
+    </div>
+   
+   
+
+
+    <script type="text/babel">
+
+
+    var Father=React.createClass({
+        render(){
+            return(
+                <h1>nihao!!!!
+                    <Son/>
+                    <Son></Son>
+                </h1>
+            )
+        }
+    })
+    var Son=React.createClass({
+        render(){
+            return(
+               <span>子组件</span>
+            )
+        }
+    })
+
+
+   ReactDOM.render(<Father/>,app)
+        
+    </script>
+</body>
+</html>

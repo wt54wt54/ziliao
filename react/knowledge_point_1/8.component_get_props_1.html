@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./base/react.min.js"></script>
+    <script src="./base/react-dom.min.js"></script>
+    <script src="./base/browser.min.js"></script>
+</head>
+
+<style>
+    
+</style>
+
+<body>
+<div id='app'>
+
+</div>
+<script type='text/babel'>
+ var Father=React.createClass({
+        render(){
+            return(
+                <h1>nihao!!!!
+                    <Son>xxxxxxx</Son> 
+                </h1>
+            )
+        }
+    })
+var Son=React.createClass({
+    render(){
+        console.log(this)
+        return(
+            <div>
+                <p>这里是子组件</p>
+                <p>组件中间的是{this.props.children}</p>
+            </div>
+        )
+    }
+})   
+ReactDOM.render(<Father/>,app)
+ReactDOM.render(<Son/>,app)
+/*
+如果在react对同一个元素进行渲染操作 覆盖渲染
+react 中没有 slot chacao  但是可以通过 this.props.children 获取组件中间的内容
+
+*/
+</script>
+</body>
+</html>

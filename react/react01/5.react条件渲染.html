@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="../base/react.min.js"></script>
+  <script src="../base/react-dom.min.js"></script>
+  <script src="../base/browser.min.js"></script>
+  <title>Document</title>
+</head>
+<body>
+<div id='app'>
+
+</div>
+<script type='text/babel'>
+
+let Component=React.createClass({
+  getInitialState(){
+    // 15.6 生命周期  初始化state数据  当成vue中data里的数据
+    return{
+      show:false
+    }
+  },
+  renderSpan(){
+    console.log(this) 
+    if(!this.state.show) return false
+    return (
+      <span>你好</span>
+    )
+  },
+  render(){
+    console.log(this)
+    // 当前的组件的对象
+    return(
+      <div>
+      {/*  {this.state.show?<span>测试span</span>:''}    */}
+      {/*{!this.state.show||<span>测试span</span>}*/}
+      {this.renderSpan()}
+      </div>
+    )
+  }
+})
+// react 中的数据  存放在 state 和props中
+ReactDOM.render(<Component/>,app)
+</script>
+</body>
+</html>

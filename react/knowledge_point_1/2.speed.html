@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div>123</div>
+    <span id="num"></span>
+</body>
+
+<script>
+    // 1 - 2 - 3 - 4 - 1
+    // $('#num').html(1)
+    // $('#num').html(2)
+    // $('#num').html(3)
+    // $('#num').html(4)
+    // $('#num').html(1)
+
+    // var vdom_1 = {
+    //     tag: 'body',
+    //     attr: {},
+    //     content: [
+    //         {
+    //             tag: 'div', attr: {}, content: '123'
+    //         },
+    //         {
+    //             tag: 'span', attr: {id: 'num'}, content: ''
+    //         }
+    //     ]
+    // } 
+    // var vdom_2 = {
+    //     tag: 'body',
+    //     attr: {},
+    //     content: [
+    //         {
+    //             tag: 'div', attr: {}, content: '123'
+    //         },
+    //         {
+    //             tag: 'span', attr: {id: 'num'}, content: '1'
+    //         }
+    //     ]
+    // } 
+
+    // console.time('a')
+    // for (let i = 0; i < 10000; i++) {
+    //     let num = document.getElementById('num').innerHTML
+    //     document.getElementById('num').innerHTML = ++num
+    // }
+    // console.timeEnd('a')
+
+    // console.time('b')
+    // let num = 0
+    // for (let i = 0; i < 10000; i++) {
+    //     num ++;
+    // }
+    // document.getElementById('num').innerHTML = num
+    // console.timeEnd('b')
+</script>
+</html>

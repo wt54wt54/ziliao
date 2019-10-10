@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./base/react.min.js"></script>
+    <script src="./base/react-dom.min.js"></script>
+    <script src="./base/browser.min.js"></script>
+</head>
+
+<body>
+    
+    <div id="app"></div>
+    <div id="app1"></div>
+    
+    <script type="text/babel">
+        // vue 少林方丈- 方证  功能很强大、多，主张弱，渐进式
+        // react 独孤求败  api简单，少！灵活
+        // angular 东方不败 主张强！ TS....
+      
+
+        //组件的生命周期分为三个阶段：初始化、运行中、销毁
+        // 每个阶段都会有自己的钩子函数供我们在不同的情况下使用
+        //组件是一个构造器，当我们在使用组件的时候其实是在实例化组件，在这个时候组件就会经历生命周期
+
+        var props_num = 0;
+        var state_num = 0;
+        var Hello = React.createClass({    
+            getDefaultProps () {
+                console.log('1.getDefaultProps')
+                //作用： 设置默认属性
+                //特点： 无论实例化多少次，只执行一次
+                //原因： 组件的默认属性优先级低，可以共享，提高性能
+                return {
+                    num: ++props_num
+                }
+            },    
+            getInitialState () {
+                console.log('2.getInitialState')
+                //作用： 为每一个组件的实例设置初始的状态
+                return {
+                    num: ++state_num
+                }
+            },
+            componentWillMount () {// created + beforeMount
+                console.log('3.componentWillMount')
+                //特点： 在这里我们可以获取或者更改状态，并且在这里更改状态不会触发运行中钩子函数执行
+                //作用： 可以做一些初始状态的设置、获取...
+            },
+            render () {     
+                console.log('4.render')         
+                return (
+                    <div>   
+                      <p>props_num: {this.props.num}</p>
+                      <p>state_num: {this.state.num}</p>
+                    </div>
+                )
+            },
+            componentDidMount () {// mounted
+                console.log('5.componentDidMount')   
+                //特点： 已经可以操作真实的dom
+                //作用： 操作真实的dom，实例化一些插件等等
+            }
+        })
+
+        //争议： 如果组件需要在初始化的时候利用ajax异步的获取数据，然后再去更改状态..，这个时候，获取数据的动作可以放在componentWillMount
+        //在阿里巴巴，他们一直是放在componentDidMount里的
+
+        ReactDOM.render(<Hello/>,document.getElementById("app"))
+        // ReactDOM.render(<Hello/>,document.getElementById("app1"))
+    </script>
+</body>
+</html>

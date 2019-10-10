@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./base/react.min.js"></script>
+    <script src="./base/react-dom.min.js"></script>
+    <script src="./base/browser.min.js"></script>
+</head>
+<style>
+    .show{display: block;}
+    .hide{display: none;}
+</style>
+<body>
+    <p>页面不同显示还是需要有数据来控制</p>
+    <p>可以通过ref来对组件dom结构里的某一个dom做出标记，这样的话可以在组件内部通过this.refs来进行获取</p>
+    <hr>
+    <div id="app"></div>
+    <hr>
+    <div id="app1"></div>
+
+
+    <script type="text/babel">
+        // 更改的数据，且更改之后要重新渲染的数据放入到状态中
+    var DropDown = React.createClass({
+        getInitialState(){
+            return{
+                isShow:true
+            }
+        },
+        toggle(){
+         this.state.isShow=!this.state.isShow
+         this.setState({})
+        },
+        color:{color:'red'},
+        renderP(){
+          if (this.state.isShow) {
+             return   <p >测试元素</p>
+          }else{
+              return false
+          }
+        },
+        render:function () {
+            console.log('渲染了')
+            return (
+                <div>
+                    <button onClick={this.toggle}>toggle</button>
+                    <p className={this.state.isShow?'show':'hide'}>测试元素</p>
+                     {/*<p style={{color:'red'}}>测试元素</p>*/}
+                    <p style={ {display:(this.state.isShow?'block':'none')} }>测试元素</p>
+                    {
+                         this.renderP()
+                    }
+                    {
+                        !this.state.isShow||<p >测试元素</p>
+                    }
+                </div>
+            )
+        }
+    })
+
+    ReactDOM.render(<DropDown/>,document.getElementById("app"))
+   /*
+   修改数据 实现页面元素的显示隐藏
+   显示隐藏
+   渲染不渲染
+   
+   */
+
+     
+        
+    </script>
+</body>
+</html>

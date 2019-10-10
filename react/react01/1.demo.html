@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src ='../base/react.min.js'></script>
+  <!-- 提供React 对象  vue.min.js -->
+  <script src ='../base/react-dom.min.js'></script>
+  <!-- 提供了reactdom对象 将虚拟dom 渲染成真实dom-->
+  <script src ='../base/browser.min.js'></script>
+  <!-- 帮助浏览器解析jsx语法 -->
+  <title>Document</title>
+</head>
+<body>
+   <div id='app'>
+
+   </div>
+<script type='text/babel'>
+// 只有16版本以前可以用 
+let Component = React.createClass({
+  render(){
+    // 渲染函数  内部返回jsx
+    return(
+      <div>
+        你好 世界
+      </div>
+    )
+  }
+})
+// 将组件渲染到固定的dom结构上
+ReactDOM.render(<Component/>,document.getElementById('app'))
+</script>
+</body>
+</html>

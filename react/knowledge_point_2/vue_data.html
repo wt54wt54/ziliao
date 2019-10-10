@@ -1,0 +1,77 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div id="app">
+        <hello></hello>
+    </div>
+    <template id="hello">
+        <div>
+            <p>{{num}}</p>
+            <button @click = "++num">increment</button>
+        </div>
+    </template>
+    <script src="https://cdn.bootcss.com/vue/2.5.16/vue.min.js"></script>
+    <script>
+
+        Vue.component('hello', {
+            template: '#hello',
+            data () {
+                return {
+                    num: 1
+                }
+            },
+            mounted () {
+                console.log(this.$data)
+            }
+        })
+
+
+
+        // 响应式原理
+        // 在vue中，不论是组件还是实例，都会利用Object.defineProperty对组件的数据进行处理
+        // 传入的只是一个普通的object对象，但是经过处理之后会挂载到this.$data上，才可以使用
+        // Object.defineProperty可以为一个对象添加属性，并且会为这些属性绑定好getter和setter
+        // 当我们使用数据值的时候就会触发该属性对应的getter，当我们设置值的时候会触发该属性对应的setter
+        // vue就可以监控数据的设置与更改，这个时候会去触发对应的wather，然后去创建新的虚拟dom，与上一次的虚拟dom做对比之后，重新渲染
+        
+        var obj = {}
+
+        Object.defineProperty(obj, 'num', {
+            middle: 2,
+            get () {//getter 获取值的时候触发，值就是get返回的内容
+                console.log('getter')
+                return this.middle || 2
+            },
+            set (val) {//setter 给属性设置值
+                console.log('setter')
+                this.middle = val
+            }
+        })
+
+        console.log(obj.num)
+        obj.num = 6
+        console.log(obj.num)
+
+
+
+
+
+
+
+
+
+
+        new Vue({
+            el: '#app'
+        })
+    </script>
+</body>
+</html>
