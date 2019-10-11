@@ -94,11 +94,32 @@ ref 绑定子组件  父子通信
 #### 生命周期
 
 ##### 挂载阶段
-
+getDefaultProps 
+初始化props值 this组件的构造函数 dom
+getInitaialState 
+初始化state值  this 当前的组件对象 
+componentWillMount 
+挂载之前 this  state  props
+可以 修改数据 不需要执行this.setState  也不会引起运行中的生命周期执行
+可以 数据请求  不推荐
+ componentDidMount
+ 挂载结束 this state 
+ 数据请求
+ 修改数据 this.setState
+ 有dom元素 dom的初始化操作 初始化swiper better-scroll 
 ##### 运行中
-
+shouldComponentUpdate
+是否组件需要更新
+返回值  true  需要更新组件 false  组件不更新
+可以做效率优化
 ##### 卸载阶段
 componentWillUnMount
+
+#### 脚手架工具
+npm install create-react-app -g
+create-react-app  -V
+creat-react-app 项目名字
+
 #### 路由
 
 

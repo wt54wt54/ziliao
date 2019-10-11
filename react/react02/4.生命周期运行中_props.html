@@ -15,31 +15,17 @@
 </div>
 <script type='text/babel'>
 let Component=React.createClass({
-  getDefaultProps(){
-    console.log('props初始化')
-
-    return{
-      name:'hehe'
-    }
-  },
   getInitialState(){
-    console.log('state初始化')
-
     return{
       age:16
     }
-  },
-  componentWillMount(){
-
-    console.log('挂载之前')
-    // this.state.age=20
-
   },
   render(){
     console.log('页面渲染')
     return(
       <div>
-      <p ref='p'>hehehe{this.state.age}</p>
+      <Son age={this.state.age}></Son>
+      <hr/>
       <button onClick={()=>{
         this.setState({age:20})
       }}>change</button>
@@ -48,27 +34,21 @@ let Component=React.createClass({
       
     )
   },
-  componentDidMount(){
-    console.log('挂载结束')
-    
-    // this.setState({age:20})
-
-    },
-  shouldComponentUpdate(props,state){
-    console.log('数据发生改变是否更新界面')
-    // 根据返回值确定是否可以重新渲染界面  可以做效率优化
-    // this里的数据是修改之前
-    //props  state 参数 是修改后的数据
-    console.log('this',this.state)
-    console.log('参数',state)
-    if(this.state.age===state.age){
-      return false
-    }else{
-
-      return true
-    }
+})
+let Son =React.createClass({
+  componentWillReceiveProps(){
+    console.log('props 发生改变')
+  },
+  shouldComponentUpdate(){
+    return false
+  },
+  render(){
+    return(
+      <div>
+        这里是子组件{this.props.age}
+      </div>
+    )
   }
-
 })
 
 ReactDOM.render(<Component/>,app)

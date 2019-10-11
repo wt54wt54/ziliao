@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="../base/react.min.js"></script>
+  <script src="../base/react-dom.min.js"></script>
+  <script src="../base/browser.min.js"></script>
+  <title>Document</title>
+  <style>
+    *{
+      padding: 0;
+      margin: 0;
+    }
+    .nav{
+      width: 300px;
+      height: 100px;
+      border: 1px solid red;
+    }
+    .nav li{
+      display: inline-block;
+      width: 100px;
+      height: 100px;
+      background: #ccc;
+    }
+    .nav .sel{
+      background: skyblue;
+    }
+  </style>
+</head>
+<body>
+<div id='app'>
+
+</div>
+<script type='text/babel'>
+let Box = React.createClass({
+  getInitialState(){
+    return{
+      selIndex:0,
+    }
+  },
+  changeSelIndex(index){
+    this.setState({selIndex:index})
+  },
+  render(){
+    return(
+      <div>
+       <Nav selIndex={this.state.selIndex} changeSelIndex={this.changeSelIndex}></Nav>
+       <List selIndex={this.state.selIndex}></List>
+      </div>
+    )
+  }
+})
+// 歌曲列表
+let List = React.createClass({
+  componentWillReceiveProps(props){
+    // 参数的数据是修改之后的 this的数据是修改之前的
+    console.log(this.props.selIndex,'props发生改变')
+    console.log(props.selIndex)
+    if(props.selIndex===this.props.selIndex) return false
+    this.getMovies(props.selIndex)
+  
+  },
+  getInitialState(){
+    return{
+      list:[]
+    }
+  },
+  componentDidMount(){
+    this.getMovies(0)
+  },
+  getMovies(index){
+    console.log('数据请求')
+    setTimeout(() => {
+       let data=[['红色高跟鞋','真实的魔鬼游戏','山村老湿'],['战狼','叶问','杀破狼'],['进击的巨人','柯南','海贼','死神']]
+       this.setState({list:data[index]})
+    }, 1000);
+  },
+  render(){
+    return(
+      <div>
+        <ul>
+          {this.state.list.map((item,index)=>{
+            return (
+              <li key={index}>{item}</li>
+            )
+          })}
+        </ul>
+      </div>
+    )
+  }
+})
+//  nav
+let Nav = React.createClass({
+ 
+  render(){
+    return(
+      <div className='nav'>
+        <ul>
+          <li className={this.props.selIndex==0?'sel':""} onClick={()=>{
+            this.props.changeSelIndex(0)
+          }}>恐怖</li>
+          <li className={this.props.selIndex==1?'sel':""} onClick={()=>{
+            this.props.changeSelIndex(1)
+          }}>动作</li>
+          <li className={this.props.selIndex==2?'sel':""} onClick={()=>{
+            this.props.changeSelIndex(2)
+          }}>动漫</li>
+        </ul>
+      </div>
+    )
+  }
+})
+
+ReactDOM.render(<Box/>,app)
+
+</script>
+</body>
+</html>
