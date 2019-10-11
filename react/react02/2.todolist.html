@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="../base/react.min.js"></script>
+  <script src="../base/react-dom.min.js"></script>
+  <script src="../base/browser.min.js"></script>
+  <title>Document</title>
+</head>
+<body>
+<div id='app'>
+
+</div>
+<script type='text/babel'>
+// var app=0;
+let Box=React.createClass({
+  getInitialState(){
+    return{
+      list:[{matter:'豆腐渣',finish:false},{matter:'分组',finish:false}]
+    }
+  },
+  del(index){
+   console.log('删除的index',index)
+   let list=this.state.list 
+   list.splice(index,1)
+   this.setState({list})
+  },
+  update(index){
+
+   let list=this.state.list 
+   list[index].finish=true
+   this.setState({list})
+  },
+  add(matter){
+    let list=this.state.list 
+    list.push({matter:matter,finish:false})
+    this.setState({list})
+  },
+  render(){
+    let {list}=this.state
+    return(
+      <div>
+      <Input add={this.add}></Input>
+      <List list={list} del={this.del} update={this.update}></List>
+      </div>
+      
+    )
+  }
+})
+// 非受控组件
+// let Input=React.createClass({
+//   sonAdd(){
+//     let value=this.refs.input.value
+//     this.props.add(value)
+//   },
+//   render(){
+//     return(
+//       <div>
+//         <input type="text" ref='input'/>
+//         <button  onClick={this.sonAdd}>add</button>
+//       </div>
+      
+//     )
+//   }
+// })
+// 受控组件
+let Input=React.createClass({
+  getInitialState(){
+    return{
+      value:'hehe',
+     info:{
+       value1:1,
+       value2:2,
+       value30:30,
+     }
+    }
+  },
+  sonAdd(){
+    let value=this.state.value
+    this.props.add(value)
+  },
+  render(){
+    return(
+      <div>
+        <input type="text" value={this.state.value} onChange={(e)=>{
+          console.log(e.target.value)
+          this.setState({value:e.target.value})
+        }}/>
+        <button  onClick={this.sonAdd}>add</button>
+      </div>
+      
+    )
+  }
+})
+let List=React.createClass({
+  sonFinish(index){
+    console.log(index)
+    this.props.update(index)
+  },
+  renderList(list){
+    if(list.length ===0 ) return '当前暂无数据'
+    return list.map((item,index)=>{
+          return(
+            <li>{item.matter}
+              <button onClick={()=>{
+                this.props.del(index)
+              }}>删除</button>
+              {item.finish?'完成':<button onClick={this.sonFinish.bind(this,index)}>完成</button>}
+            </li>
+          )
+        })
+  },
+  render(){
+    console.log(this,'list')
+    let {list} = this.props
+    return(
+      <div>
+       {this.renderList(list)}
+      </div>
+      
+    )
+  }
+})
+/*
+box  父组件实现状态提升
+list  
+    1.显示数据
+    2.修改数据 删除 完成
+input 
+    1.添加数据
+
+*/ 
+ReactDOM.render(<Box/>,app)
+// 在react中组件名必须大写
+</script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="../base/react.min.js"></script>
+  <script src="../base/react-dom.min.js"></script>
+  <script src="../base/browser.min.js"></script>
+  <title>Document</title>
+</head>
+<body>
+<div id='app'>
+
+</div>
+<script type='text/babel'>
+let Component=React.createClass({
+  getDefaultProps(){
+    console.log('props初始化')
+
+    return{
+      name:'hehe'
+    }
+  },
+  getInitialState(){
+    console.log('state初始化')
+
+    return{
+      age:16
+    }
+  },
+  componentWillMount(){
+
+    console.log('挂载之前')
+    // this.state.age=20
+
+  },
+  render(){
+    console.log('页面渲染')
+    return(
+      <div>
+      <p ref='p'>hehehe{this.state.age}</p>
+      <button onClick={()=>{
+        this.setState({age:20})
+      }}>change</button>
+       你好 
+      </div>
+      
+    )
+  },
+  componentDidMount(){
+    console.log('挂载结束')
+    
+    // this.setState({age:20})
+
+    },
+  shouldComponentUpdate(props,state){
+    console.log('数据发生改变是否更新界面')
+    // 根据返回值确定是否可以重新渲染界面  可以做效率优化
+    // this里的数据是修改之前
+    //props  state 参数 是修改后的数据
+    console.log('this',this.state)
+    console.log('参数',state)
+    if(this.state.age===state.age){
+      return false
+    }else{
+
+      return true
+    }
+  }
+
+})
+
+ReactDOM.render(<Component/>,app)
+
+</script>
+</body>
+</html>

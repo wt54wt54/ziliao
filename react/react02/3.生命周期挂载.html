@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="../base/react.min.js"></script>
+  <script src="../base/react-dom.min.js"></script>
+  <script src="../base/browser.min.js"></script>
+  <title>Document</title>
+</head>
+<body>
+<div id='app'>
+
+</div>
+<script type='text/babel'>
+let Component=React.createClass({
+  getDefaultProps(){
+    console.log('props初始化')
+    // 初始化props 其他啥都干不了
+    // console.log(this)
+    return{
+      name:'hehe'
+    }
+  },
+  getInitialState(){
+    console.log('state初始化')
+    // 初始化state 其他啥都干不了
+    // console.log(this)
+    // console.log(this.refs.p)
+    // console.log(this.props)
+    // console.log(this.state)
+    return{
+      age:16
+    }
+  },
+  componentWillMount(){
+
+    console.log('挂载之前')
+    // 初始化state 其他啥都干不了
+    // console.log(this)
+    // console.log(this.refs.p)
+    // console.log(this.props)
+    // console.log(this.state)
+    this.state.age=18
+    // 修改state数据不需要执行setState 
+    // 不会触发运行中生命周期
+    // 可以发起ajax请求 初始化数据 不推荐
+    //  同步渲染 16版本之前  componentWillMount 可以做数据请求
+    //  异步渲染 默认同步渲染 16版本之后  render 前的生命周期 可能重复执行
+    //  17版本之后就会变成异步渲染  
+  },
+  render(){
+    console.log('页面渲染')
+    return(
+      <div>
+      <p ref='p'>hehehe{this.state.age}</p>
+       你好 
+      </div>
+      
+    )
+  },
+  componentDidMount(){
+    console.log('挂载结束')
+    //初始化数据  初始化dom swiper  修改数据
+    console.log(this)
+    console.log(this.refs.p)
+    console.log(this.props)
+    console.log(this.state)
+    this.setState({age:20})
+    },
+
+})
+
+ReactDOM.render(<Component/>,app)
+
+</script>
+</body>
+</html>
