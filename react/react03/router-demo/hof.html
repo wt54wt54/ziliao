@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // localStorage.setItem('name','呵呵哒') // 10w
+    // function sayHello(){
+    //   let name=localStorage.getItem('name')
+    //   console.log('你好:',name)
+    // }  
+    // function welCome(){
+    //   let name=localStorage.getItem('name')
+    //   console.log('欢迎:',name)
+    // } 
+    // function byBy(){
+    //   let name=localStorage.getItem('name')
+    //   console.log('再见:',name)
+    // }  
+    // sayHello()
+    // welCome()
+    // byBy()
+
+    function hof(fun){
+      return()=>{
+        let name=localStorage.getItem('name')
+        fun(name)
+      }
+    }
+    function sayHello(name){
+      console.log('你好:',name)
+    }  
+    hof(sayHello)()
+
+    function welCome(name){
+      console.log('欢迎:',name)
+    }
+     function byBy(name){
+      console.log('再见:',name)
+    }  
+    hof(sayHello)()
+    hof(welCome)()
+    hof(byBy)()
+  </script>
+</body>
+</html>

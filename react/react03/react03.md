@@ -136,4 +136,30 @@ react-router-native 原生app
 box
    home
    login
+声明式导航(标签组件)  
+<router-link to='/home' tag='div' active-class='class'>  
+<Link to=''>
+<NavLink to='' >
+编程式导航（js代码）
+ push  replace go  back forward 
+ this.$router.push()
+精准匹配  exact
+正常情况下所有能匹配的组件都进行渲染（包含）
+路径完全匹配才能渲染组件
+动态路由  /home/:id
+嵌套路由  
+路由传参
+x 命名路由  [{path:'/home',component:Home,name:home}]
+x 命名视图  <router-view name='a'>
+重定向
+x 路由守卫
+X 路由懒加载 异步组件   
+import Home from './xx/home.vue'  const Home = ()=>{ import()}
+withRouter 给组件赋予路由对象
+
+##### hof高阶函数（代码的优化和封装）
+高阶函数 是一个函数 接受一个函数作为参数 返回一个新的函数
+##### hoc 高阶组件
+高阶组件 是一个函数 接受一个组件作为参数 返回一个新的组件
+http://note.youdao.com/noteshare?id=24eb39aa32795c8053147f5c6a5bbffd
 #### 全局状态管理
