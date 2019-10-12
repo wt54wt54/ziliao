@@ -121,11 +121,18 @@ create-react-app  -V
 creat-react-app 项目名字
 
 #### 路由
+##### 原理
+1.监听地址栏变化
+2.根据变化渲染组件
 1. 通过按钮控制div的渲染
 2. 通过按钮控制组件的渲染
-3. 通过地址栏hash的改变 控制组件的显示隐藏
+3. 通过地址栏hash的改变控制组件的显示切换 vue-router
    a.怎么样知道地址栏hash值
 封装一个组件  home  login
+##### react路由插件
+react-router  1 2 3
+react-router-dom  4, 5
+react-router-native 原生app
 box
    home
    login
