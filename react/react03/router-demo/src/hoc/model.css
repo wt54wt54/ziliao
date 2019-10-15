@@ -1,0 +1,13 @@
+.model{
+  position: fixed;
+  top:0;
+  bottom: 0;
+  width: 100%;
+  background: rgba(0,0,0,.6);
+  
+}
+.model div{
+  width: 300px;
+  height: 200px;
+  background: #fff;
+}

@@ -140,9 +140,13 @@ box
 <router-link to='/home' tag='div' active-class='class'>  
 <Link to=''>
 <NavLink to='' >
+<Route path='' componet={} render={}>
+<Redicte from ='/' to='/home' exact>
+<Switch></Switch>
 编程式导航（js代码）
  push  replace go  back forward 
  this.$router.push()
+ histroy
 精准匹配  exact
 正常情况下所有能匹配的组件都进行渲染（包含）
 路径完全匹配才能渲染组件
@@ -160,6 +164,12 @@ withRouter 给组件赋予路由对象
 ##### hof高阶函数（代码的优化和封装）
 高阶函数 是一个函数 接受一个函数作为参数 返回一个新的函数
 ##### hoc 高阶组件
+<!-- 反向拦截  -->
 高阶组件 是一个函数 接受一个组件作为参数 返回一个新的组件
 http://note.youdao.com/noteshare?id=24eb39aa32795c8053147f5c6a5bbffd
+
+1.本质是一个函数 接受一个组件（要渲染的） 返回一个新的组件（统一处理 返回新的组件）
+2.要使用高阶组件数据从props 获取
+3.withRouter  react-Redux  Antd  From  路由拦击器
+4.优化代码  全局统一处理
 #### 全局状态管理
