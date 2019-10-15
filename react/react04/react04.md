@@ -175,5 +175,37 @@ http://note.youdao.com/noteshare?id=24eb39aa32795c8053147f5c6a5bbffd
 #### 全局状态管理 redux react-redux  (mobx  dva)
 ##### redux
 1.多组件共享状态 
-
+```
+  Store.js 小皇帝
+  import {createStore} from 'redux'
+  import reducer from './reducer'
+  export default createStore(reducer)
+  state.js state 文件
+  export default{
+        name:1
+  }
+  reducer  老佛爷
+  export default (prevState=state,action)=>{
+     let newData=prevState
+      retutn newData 
+  }
+Store.getState() 
+```
 2.一个组件发生改变都变
+a.通过dispath 向老佛爷发送action
+b.老佛爷根据action修改数据
+c.监听全局状态值修改 重新渲染组件
+
+#### 简历
+1.技术栈
+http://note.youdao.com/noteshare?id=7fbfc5d20dc6b684efe378ab28cf8b37
+2.项目
+证明自己经验 get more money  高大上 有难度
+
+引导面试官提问自己会的方面
+
+面试官提问问题: 1.简历写自己会的
+             2.面试官的问题（自己遇到的难题，公司遇到的） 听天由命  临场发挥 
+             3.自己百度的（面试宝典 百度）
+            
+项目：讲故事 一本道
