@@ -3,7 +3,7 @@
 import State from './state'
 export default (prevState=State,action)=>{
  console.log('老佛爷批奏折了',prevState,action)
-  let newData=JSON.parse(JSON.stringify(prevState))
+  let newData=prevState
    // 根据action修改数据
   let {type,params}=action
   switch (type) {

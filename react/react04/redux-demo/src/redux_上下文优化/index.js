@@ -1,17 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Provider} from 'react-redux'
 import store from './redux/store'
+
 // 类型检测
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-
+import Provider from './context/context'
 
 ReactDOM.render(
 <Provider store={store}>
-  {/* 将store对象放到跟组件的上下文 */}
 <App />
 </Provider>
+
 , document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change

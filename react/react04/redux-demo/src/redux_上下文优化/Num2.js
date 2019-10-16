@@ -1,23 +1,24 @@
 import React ,{Component} from 'react'
-import {connect} from 'react-redux'
-import {bindActionCreators} from 'redux'
+import Store from './store'
 import ActionCreator from './actionCreator'
 class Num2 extends Component{
-
+  componentDidMount(){
+    Store.subscribe(()=>{
+      this.setState({})
+    })
+  }
   render(){
-    let {num,name}=this.props
+    let {num,name}=Store.getState()
     return(
       <div>
         <h1>num2</h1>
         {num}
         {name}
        <button onClick={()=>{
-         this.props.changeName('韩梅梅')
+         ActionCreator.changeName('韩梅梅')
        }}>改名</button>
       </div>
     )
   }
 }
-export default connect(state=>state,(dispatch)=>{
-  return bindActionCreators(ActionCreator,dispatch)
-})(Num2)
+export default Num2
