@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+<script>
+// var  obj={
+//   name:'韩梅梅',
+//   sayHello:function(){
+//     console.log(this)// obj
+//     console.log('你好'+this.name)
+//   },
+//   sayByby:function(){
+//     console.log(this)//obj
+//     return function(){
+//       console.log(this)//
+//       console.log('再见'+this.name)
+//     }
+//   }
+// }
+// var  obj={
+//   name:'韩梅梅',
+//   sayHello:()=>{
+//     console.log(this)// window
+//     console.log('你好'+this.name)
+//   },
+//   sayByby:function(){
+//     console.log(this)// obj
+//     return ()=>{
+//       console.log(this)//obj
+//       console.log('再见'+this.name)
+//     }
+//   }
+// }
+// 执行上下文context  作用域  执行环境
+
+
+// function hehe(){
+//   console.log(arguments)
+// }
+// var hehe=(...a)=>{
+//   console.log(a)
+// }
+// hehe(1,2,3,4,5,6)
+// function hehe(){}
+// var hehe=()=>{}
+// console.log(hehe.prototype)
+// function npc(){
+//   this.name='财讯坤'
+//   this.hp=1
+//   this.mp=1
+//   this.act=1
+// }
+let npc=()=>{
+  this.name='财讯坤'
+  this.hp=1
+  this.mp=1
+  this.act=1
+}
+var npc1=new npc()
+console.log(npc1)
+</script>
+</body>
+</html>
