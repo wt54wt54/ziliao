@@ -1,54 +1,44 @@
-//index.js
-//获取应用实例
-const app = getApp()
-
 Page({
-  data: {
-    motto: 'Hello World',
-    userInfo: {},
-    hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
-  },
-  //事件处理函数
-  bindViewTap: function() {
-    wx.navigateTo({
-      url: '../logs/logs'
-    })
-  },
-  onLoad: function () {
-    if (app.globalData.userInfo) {
-      this.setData({
-        userInfo: app.globalData.userInfo,
-        hasUserInfo: true
-      })
-    } else if (this.data.canIUse){
-      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-      // 所以此处加入 callback 以防止这种情况
-      app.userInfoReadyCallback = res => {
-        this.setData({
-          userInfo: res.userInfo,
-          hasUserInfo: true
-        })
+  onLoad(){
+    // wx.setStorageSync('info1', {us:123,ps:456})
+    // console.log(wx.getStorageSync('info'))
+    // wx.removeStorageSync('info')
+    wx.clearStorageSync()
+    console.log(111)
+    wx.request({
+      url: 'http://47.95.207.1:8080/v1/user/login', //仅为示例，并非真实的接口地址
+      data: {
+        us: '123',
+        ps: '123'
+      },
+      method:'POST',
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success(res) {
+        console.log(res.data)
       }
-    } else {
-      // 在没有 open-type=getUserInfo 版本的兼容处理
-      wx.getUserInfo({
-        success: res => {
-          app.globalData.userInfo = res.userInfo
-          this.setData({
-            userInfo: res.userInfo,
-            hasUserInfo: true
-          })
-        }
-      })
-    }
-  },
-  getUserInfo: function(e) {
-    console.log(e)
-    app.globalData.userInfo = e.detail.userInfo
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
     })
+  },
+  jumpTab(){
+    wx.switchTab({
+      url: '/pages/home/home?us=123&ps=456',
+    })
+  },
+  jumpReLanch(){
+    wx.reLaunch({
+      url: '/pages/home/home?us=123&ps=456',
+    })
+  },
+  jumpRedirect() {
+    console.log('重定向跳转')
+    wx.redirectTo({
+      url: '/pages/home/home?us=123&ps=456',
+    })
+
+  },
+
+  onUnload(){
+    console.log('index 卸载')
   }
 })

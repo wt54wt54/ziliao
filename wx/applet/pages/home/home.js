@@ -4,7 +4,10 @@ Page({
    * 页面的初始数据
    */
   data: {
-    name:'韩梅梅'
+    name:'韩梅梅',
+    list: ['https://fc3tn.baidu.com/it/u=779034314,172872806&fm=202&src=bqdata',
+    'https://fc3tn.baidu.com/it/u=779034314,172872806&fm=202&src=bqdata',
+    'https://fc3tn.baidu.com/it/u=779034314,172872806&fm=202&src=bqdata']
   },
   changename(e){
     console.log('改名',e)
@@ -12,12 +15,32 @@ Page({
     this.setData({name:'李雷'})
     // console.log(this)
   },
+  jumpRedirect() {
+    console.log('重定向跳转')
+    // wx.redirectTo({
+    //   url: '/pages/index/index?us=123&ps=456',
+    // })
+    wx.navigateTo({
+      url: '/pages/index/index?us=123&ps=456',
+    })
+
+  },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log('首页加载')
+    console.log('首页加载', options)
+    wx.setNavigationBarTitle({
+      title: '零食天地',
+    })
+    // wx.showTabBarRedDot({
+    //   index: 0,
+    // })
+    wx.setTabBarBadge({
+      index: 0,
+      text: '999',
+    })
   },
 
   /**
@@ -52,7 +75,28 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
+    wx.showActionSheet({
+      itemList: ['微信支付','支付宝支付','刷脸'],
+      success:(data)=>{
+        console.log(data)
+      }
+    })
+    // wx.showToast({
+    //   title: 'hehe',
+    // })
+    // wx.showModal({
+    //   title: '主体',
+    //   content: '内容',
+    // })
     console.log('下拉刷新了')
+    // wx.showLoading({
+    //   title: '数据加载ing',
+    // })
+    // setTimeout(()=>{
+    //   wx.hideLoading()
+    //   wx.stopPullDownRefresh()
+    //   // 停止下拉刷新
+    // },1000)
   },
 
   /**

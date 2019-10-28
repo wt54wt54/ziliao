@@ -6,5 +6,19 @@
     bind 绑定一个事件  tap 点击事件
     data-keyname=‘value’ 传参
    -->
+  <block>
+    <swiper>
+    <block wx:for="{{list}}" 
+      wx:key="{{hehe}}
+      wx:for-index='hehe' 
+      wx:for-item='xixi'>
+      <swiper-item class='swiper-item'>
+        <image src='{{xixi}}'></image>
+      </swiper-item>
+    </block>
+    </swiper>
+  </block>
+<button bindtap='jumpRedirect'>跳转到index</button>
 </view>
 <text>行内元素</text>  
+

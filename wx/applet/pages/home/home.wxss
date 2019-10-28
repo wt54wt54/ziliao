@@ -1,6 +1,14 @@
 /* pages/home/home.wxss */
 .home{
-  width: 100px;
+  width: 750rpx;
   height: 1000px;
   background: red;
 }
+/* 
+rpx + flex + vw/vh
+ */
+ .swiper-item{
+   width: 750rpx;
+   height: 100rpx;
+   background: skyblue;
+ }
