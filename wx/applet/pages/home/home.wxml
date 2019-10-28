@@ -1,0 +1,10 @@
+<view class='home'>
+  块级元素（div）
+  {{name}}
+  <button bindtap='changename' data-hehe='hehe'>change</button>
+  <!-- 
+    bind 绑定一个事件  tap 点击事件
+    data-keyname=‘value’ 传参
+   -->
+</view>
+<text>行内元素</text>  

@@ -1,0 +1,32 @@
+{
+  "pages": [
+    "pages/home/home",
+    "pages/logs/logs",
+    "pages/index/index"
+   
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "backgroundColor": "#ccc",
+    "navigationBarBackgroundColor": "#f00",
+    "navigationBarTitleText": "1913",
+    "navigationBarTextStyle": "light"
+  },
+  "tabBar": {
+    "selectedColor":"#ab956d",
+    "position":"bottom",
+    "backgroundColor": "#fff",
+    "list": [
+      {
+        "iconPath":"/common/toolbar/home.png",
+        "selectedIconPath":"/common/toolbar/home@selected.png",
+        "pagePath": "pages/home/home",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/logs/logs",
+        "text": "日志"
+      }
+    ]
+  }
+}
