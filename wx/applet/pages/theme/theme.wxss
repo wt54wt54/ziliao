@@ -1,0 +1,10 @@
+/* pages/theme/theme.wxss */
+@import '../tpl/list/tpl_list.wxss';
+.top{
+  width: 750rpx;
+  height: 388rpx;
+}
+.top image{
+  width: 100%;
+  height: 100%;
+}

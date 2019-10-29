@@ -1,16 +1,18 @@
 {
   "pages": [
+    "pages/home/home",
     "pages/login/login",
     "pages/map/map",
-    "pages/home/home",
     "pages/logs/logs",
-    "pages/index/index"
+    "pages/index/index",
+    "pages/detail/detail",
+    "pages/theme/theme"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "backgroundColor": "#ccc",
-    "navigationBarBackgroundColor": "#f00",
-    "navigationBarTitleText": "1913",
+    "navigationBarBackgroundColor": "#ab956d",
+    "navigationBarTitleText": "吃货小天地",
     "navigationBarTextStyle": "light"
   },
   "tabBar": {

@@ -1,24 +1,37 @@
-<view class='home'>
-  块级元素（div）
-  {{name}}
-  <button bindtap='changename' data-hehe='hehe'>change</button>
-  <!-- 
-    bind 绑定一个事件  tap 点击事件
-    data-keyname=‘value’ 传参
-   -->
-  <block>
-    <swiper>
-    <block wx:for="{{list}}" 
-      wx:key="{{hehe}}
-      wx:for-index='hehe' 
-      wx:for-item='xixi'>
-      <swiper-item class='swiper-item'>
-        <image src='{{xixi}}'></image>
-      </swiper-item>
-    </block>
-    </swiper>
+<import src='../tpl/list/tpl_list.wxml'/>
+<!-- 引入模板文件 -->
+<view class='home' wx:if="{{banners.length>0}}">
+<!-- 轮播图 -->
+<view class='banner'>
+<swiper indicator-dots='true'>
+  <block wx:for='{{banners}}'>
+    <swiper-item >
+      <image src="{{baseUrl+item.imagePath}}"></image>
+    </swiper-item>
   </block>
-<button bindtap='jumpRedirect'>跳转到index</button>
+</swiper>
 </view>
-<text>行内元素</text>  
+<!-- 主题 -->
+<view class='theme'>
+<view class='title'>精选主题</view>
+<block wx:for='{{themes}}'>
+ <view class="{{item.size==1?'small':'big'}}"
+    bindtap='goTheme'
+    data-themeid="{{item._id}}"
+ >
+  <image src="{{baseUrl+item.imgPath}}"></image>
+ </view>
+</block>
+</view>
+<!-- 列表 -->
+<view class='list'>
+<!--  is 使用哪一个模板 data 向模板内部传参 props -->
+<template is='tpl_list' data="{{ ...{products,baseUrl} }}">
+</template>
+
+</view>
+</view>
+<!-- <template is='hehe'></template>
+<template is='hehe'></template> -->
+<loading wx:else></loading>
 

@@ -1,14 +1,44 @@
-/* pages/home/home.wxss */
+@import '../tpl/list/tpl_list.wxss';
+/*引入模板样式 */
 .home{
-  width: 750rpx;
-  height: 1000px;
-  background: red;
+
 }
-/* 
-rpx + flex + vw/vh
- */
- .swiper-item{
-   width: 750rpx;
-   height: 100rpx;
-   background: skyblue;
- }
+.banner{
+  width: 750rpx;
+  height: 388rpx;
+
+}
+.banner swiper{
+  height: 388rpx;
+}
+.banner image{
+  width: 100%;
+  height: 388rpx;
+}
+
+/* 主题相关 */
+.theme{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.theme .title{
+  width: 750rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  text-align: center;
+  color: #ab956d;
+}
+.theme image{
+  width: 100%;
+  height: 100%;
+}
+.small{
+  width:372rpx;
+  height: 372rpx;
+}
+.big{
+  margin-top:6rpx; 
+  width: 750rpx;
+  height: 372rpx;
+}

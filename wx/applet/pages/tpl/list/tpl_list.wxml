@@ -1,0 +1,14 @@
+<template name='tpl_list'>
+  <view class='tpl_list'>
+   <block wx:for='{{products}}'>
+    <view class='tpl_list_item'
+      bindtap='goDetail'
+      data-id="{{item._id}}"
+    >
+        <image src="{{baseUrl+item.imgPath}}"></image>
+        <text>{{item.name}}</text>
+        <text>${{item.price}}</text>
+    </view>
+   </block>
+  </view>
+</template>
