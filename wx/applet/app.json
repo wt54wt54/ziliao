@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/category/category",
     "pages/home/home",
     "pages/login/login",
     "pages/map/map",
@@ -25,6 +26,10 @@
         "selectedIconPath": "/common/toolbar/home@selected.png",
         "pagePath": "pages/home/home",
         "text": "首页"
+      },
+      {
+        "pagePath":"pages/category/category",
+        "text":"分类"
       },
       {
         "pagePath": "pages/logs/logs",

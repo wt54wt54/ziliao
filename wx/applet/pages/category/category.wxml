@@ -1,0 +1,25 @@
+<!--pages/category/category.wxml-->
+<view class='category'>
+  <view class='category-nav'>
+    <block wx:for='{{category}}'>
+      <view 
+      class='category-nav-item {{sel===index?"selected":""}}'
+      bindtap='navSel'
+      data-selIndex="{{index}}"
+      > 
+        {{item}}
+      </view>
+    </block>
+    
+  </view>
+  <view class='category-box'>
+  <view class='category-box-content {{"move"+(sel+1)}} animated'>
+   <block wx:for='{{products}}'>
+    <view class='category-item '>
+       <!-- <text wx:for="{{item}}</text> -->
+       {{item.name}}
+    </view>
+  </block>
+  </view>
+  </view>
+</view>
