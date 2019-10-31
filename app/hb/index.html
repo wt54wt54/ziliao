@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title></title>
+    <script type="text/javascript">
+    	
+   		document.addEventListener('plusready', function(){
+   			//console.log("所有plus api都应该在此事件发生后调用，否则会出现plus is undefined。"
+	    let url=''
+		let recordObj = plus.audio.getRecorder();
+		let playerObj = null 
+		 document.getElementById('startRecord').onclick=function(){
+			 alert('开始录音')
+			 recordObj.record( {filename:"_doc/audio/"},(data)=>{
+				 url=data
+					console.log('录音ok',data)
+			 },()=>{console.log('录音失败')})
+		 }
+		 document.getElementById('stopRecord').onclick=function(){
+			recordObj.stop()	
+		 }
+		 document.getElementById('playRecord').onclick=function(){
+			if(playerObj){
+				playerObj.play(()=>{console.log('playok'),()=>{console.log('播放失败')}}) 
+			}else{
+				playerObj=plus.audio.createPlayer(url)
+				playerObj.play(()=>{console.log('playok'),()=>{console.log('播放失败')}}) 
+				
+			}
+		 }
+		 // 扫码实现
+		  document.getElementById('qrcode').onclick=function(){
+			  createBarcode()
+		  }
+		  // 获取联系人
+		  // 扫码实现
+		   document.getElementById('getAddress').onclick=function(){
+		  			  find()
+		   }
+		   // 拨打电话
+		   document.getElementById('phone').onclick=function(){
+		   		  plus.device.dial('10086', true);
+		   }
+   			
+   		});
+		let barcode =null
+		function createBarcode() {
+			console.log(111)
+			if(!barcode){
+				// 创建一个扫码控件
+				barcode = plus.barcode.create('barcode', [plus.barcode.QR], {
+					top:'100px',
+					left:'0px',
+					width: '100%',
+					height: '500px',
+					position: 'static'
+				});
+				// 扫码结束的回调
+				barcode.onmarked = function(type, result){
+					
+					console.log('Success: type='+type+', result='+result);
+				};
+				// 将创建的扫码控件添加到当前的webview上
+				plus.webview.currentWebview().append(barcode);
+			}
+			barcode.start();//启动扫码
+		}
+		// 获取手机通讯录
+		function find(){
+			plus.contacts.getAddressBook(plus.contacts.ADDRESSBOOK_PHONE, function (addressbook) {
+				// 获取手机中的联系人对象
+				// 通过find 方法查询向相关的信息
+				addressbook.find(["displayName","phoneNumbers"],function(contacts){
+					alert(contacts.length);
+					contacts.map((item,index)=>{
+						console.log(item.displayName)
+						return  item
+					})
+				}, function () {
+					alert("error");
+				},{multiple:true});
+			},function(e){
+				alert("Get address book failed: " + e.message);
+			});
+		}
+   		
+    </script>
+	<style>
+		.hehe{
+			width: 100px;
+			height: 100px;
+			background: red;
+		}
+	</style>
+</head>
+<body>
+	这里是测试
+	<div class='hehe'>
+		
+	</div>
+	<button type="button" id='startRecord'>开始录音</button>
+	<button type="button" id='stopRecord'>停止录音</button>
+	<button type="button" id='playRecord'>播放录音</button>
+	<hr>
+	<button type="button" id='qrcode'>扫码</button>
+	<hr>
+	<button type="button" id='getAddress'>获取联系人</button>
+	<hr>
+	<button type="button" id='phone'>拨打电话</button>
+</body>
+</html>

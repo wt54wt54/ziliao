@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title></title>
+    <script type="text/javascript">
+    	
+   		// document.addEventListener('plusready', function(){
+   			//console.log("所有plus api都应该在此事件发生后调用，否则会出现plus is undefined。"
+   			//h5+api准备好
+			alert('api 准备完毕')
+			var barcode = null;
+			// 扫码成功回调
+			function onmarked(type, result) {
+				var text = '未知: ';
+				// alert(result)
+			    // console.log(type,result)
+				document.getElementById('code').innerHTML=result
+				// barcode=null
+				console.log('扫描结果')
+				plus.webview.currentWebview().remove(barcode);
+			}
+			// 创建Barcode扫码控件
+			function sys() {
+				console.log('sys')
+				if(!barcode){
+					barcode = plus.barcode.create('barcode', [plus.barcode.QR], {
+						top:'100px',
+						left:'0px',
+						width: '100%',
+						height: '500px',
+						position: 'static'
+					});
+					barcode.onmarked = onmarked;
+					plus.webview.currentWebview().append(barcode);
+				}
+				barcode.start();
+			}
+   		// });
+			
+		function  getPeople(){
+		      console.log(222)
+				plus.contacts.getAddressBook(plus.contacts.ADDRESSBOOK_PHONE,(data)=>{
+					console.log('获取通讯录ok',data.length)
+					
+					data.find(["displayName","phoneNumbers"],(res)=>{
+						console.log(res.length)
+						let str=''
+						for(var i=0; i<res.length;i++){
+							str+=res[i].displayName+'<br/>'
+						}
+						
+						document.getElementById('contact').innerHTML=str
+						
+					})
+	
+				},(err)=>{
+					console.log('获取通讯录失败')
+				});
+		}
+		// 录音
+		let record = plus.audio.getRecorder(); 
+		function startRecord(){
+			record.record( {filename:"_doc/audio/"},(path)=>{
+					console.log(path)
+			},(err)=>{
+				console.log(err)
+			})
+		}
+	    function stopRecord(){
+			record.stop()
+		}
+		
+		let player= plus.audio.createPlayer( "_doc/audio/Recorder_004.wav" );
+		function play(){
+			player.play(()=>{
+				console.log('播放ok')
+			},()=>{
+				console.log('播放err')
+			})
+		}
+    </script>
+</head>
+<body>
+	<span id='code'></span>
+	<div id='contact'></div>
+	<button onclick='sys()'> 扫一扫</button>
+	<button onclick="getPeople()">获取通讯录</button>
+	<input type="button" value="Start Record" onclick="startRecord();"/> 
+     <input type="button" value="Stop Record" onclick="stopRecord();"/>
+	 <input type="button" value="播放" onclick="play();"/>
+</body>
+</html>
