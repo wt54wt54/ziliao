@@ -1,1 +1,23 @@
 /* pages/detail/detail.wxss */
+.detail{
+  display: flex;
+  flex-direction: column
+}
+.detail-info{
+  height: 60vh;
+  background: red;
+}
+.detail-info-image{
+  width: 750rpx;
+  height: 30vh;
+  background: blue;
+  display: flex;
+  justify-content: center;
+} 
+.detail-info-image image{
+  width: 30vh;
+  height: 30vh;
+}
+.detail-desc{
+  flex: 1;
+}

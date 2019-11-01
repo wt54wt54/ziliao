@@ -1,2 +1,36 @@
 <!--pages/detail/detail.wxml-->
-<text>pages/detail/detail.wxml</text>
+<view class='detail'>
+  
+<view class='detail-info'>
+<view class='btn' bindtap='goShopCar'>
+<view>{{allNum}}</view>
+<image src='/common/icon/cart@top.png'></image>
+</view>
+<!-- 图片 -->
+<view class='detail-info-image'>
+ <image src="{{baseUrl+product.imgPath}}"></image>
+</view>
+<!-- 数量选择器 -->
+<view class='detail-info-picker'>
+<picker  range="{{pickers}}"
+    bindchange='bindChange'
+>
+    <view class="picker">
+      <view> 数量{{numSel}}</view>
+     
+    </view>
+  </picker>
+   <view bindtap='addCar'>加入购物车</view>
+</view>
+<!-- 基本信息 -->
+<view>
+ {{product.name}}
+ {{product.price}}
+</view>
+</view>
+
+
+<view class='detail-desc'>
+
+</view>
+</view>
