@@ -41,8 +41,8 @@ Page({
     
   },
   goShopCar(){
-    wx.switchTab({
-      url: "/pages/shopcar/shopcar",
+    wx.reLaunch({
+      url: "/pages/shopcar/shopcar?from='shopcar'",
     })
   },
   refreshData(){

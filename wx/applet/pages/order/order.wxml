@@ -1,0 +1,7 @@
+<view>
+<view>
+订单列表
+</view>
+<button bindtap='getAdress'>获取地址</button>
+<button bindtap='payment'>付款</button>
+</view>

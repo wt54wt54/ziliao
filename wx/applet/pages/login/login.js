@@ -4,6 +4,13 @@ Page({
   data:{
 
   },
+  bindGetUserInfo(){
+    wx.getUserInfo({
+      success(data){
+        console.log(data)
+      }
+    })
+  },
   login(){
     wx.login({
       success(res){

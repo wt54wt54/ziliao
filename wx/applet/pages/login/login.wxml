@@ -1,4 +1,8 @@
 <!--pages/login/login.wxml-->
 <view>
   <button bindtap='login'>登录</button>
+ <button bindtap='getInfo'>获取用户信息</button>
+ <!-- <open-data type="userAvatarUrl"></open-data>
+<open-data type="userNickName"></open-data> -->
+<button  open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">授权登录</button>
 </view>

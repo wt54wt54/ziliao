@@ -67,6 +67,66 @@ class ShopCar extends Base {
     data[index].state = !data[index].state
     this.setData(data)
   }
+  //数量添加
+  changeNum(index,type){
+    let data = this.getData()
+    if(type===1){
+      data[index].num++
+    }else{
+      data[index].num--
+    }
+   
+    this.setData(data)
+  }
+  //删除商品 
+  del(index){
+    let data = this.getData()
+    data.splice(index,1)
+    this.setData(data)
+
+  }
+  // 获取选中的总数量
+  getSelNum(){
+    let data = this.getData()
+    let num=0
+    data.map((item)=>{
+      if(item.state){
+        num+=item.num
+      }
+      return item
+    })
+    return num
+  }
+  // 获取选中的总价格
+  getSelPrice(){
+    let data=this.getData()
+    let price=0
+    data.map((item)=>{
+      if(item.state){
+        price+=Number(item.num)*(Number(item.price)*100)
+      }
+      return item
+    })
+    return price/100
+  }
+  // 下单
+  createOrder(){
+    let data = this.getData()
+    let order=[]
+    let shopcar=[]
+    // 下单之后更新的购物车信息
+    data.map((item,index)=>{
+      if(item.state){
+        order.push(item)
+      }else{
+        shopcar.push(item)
+      }
+      return item
+    })
+  
+    this.setData(shopcar)
+    return order
+  }
 }
 
 

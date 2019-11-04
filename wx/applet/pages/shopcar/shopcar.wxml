@@ -1,2 +1,52 @@
-<!--pages/shopcar/shopcar.wxml-->
-<text>pages/shopcar/shopcar.wxml</text>
+<view>
+<!--列表显示 -->
+<view class='list'>
+<block wx:for='{{lists}}'>
+  <view class='list-item' 
+  >
+    <view class='list-item-sel'
+    bindtap='changeSel'
+    data-index='{{index}}'
+    >
+      <image src="{{item.state?'/common/icon/circle@selected.png':'/common/icon/circle@noselected.png'}}"></image>
+    </view>
+    <view class='list-item-image'>
+      <image src='{{baseUrl+item.imgPath}}'></image>
+    </view>
+    <view class='list-item-desc'>
+       <view>
+        {{item.name}} 
+        {{item.price}}
+       </view>
+       <view class='list-item-desc-action'>
+       <view
+        bindtap='changeNum'
+        data-type="{{-1}}" 
+        data-index="{{index}}">-</view>
+       {{item.num}}
+       <view 
+        bindtap='changeNum'
+        data-type="{{1}}" 
+        data-index="{{index}}"> +</view>
+       <view 
+        bindtap='changeNum'
+        data-type="{{0}}" 
+        data-index="{{index}}">del</view>
+       </view>
+    </view>
+  </view>
+</block>
+</view>
+<!--下单操作 -->
+<view>
+<view>
+  全选{{selNum}} 
+</view>
+<view bindtap='goOrder'>
+下单
+</view>
+<view>
+总价格:{{selPrice}}
+</view>
+</view>
+</view>

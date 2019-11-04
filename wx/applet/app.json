@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/shopcar/shopcar",
     "pages/category/category",
     "pages/detail/detail",
     "pages/home/home",
@@ -8,7 +9,7 @@
     "pages/logs/logs",
     "pages/index/index",
     "pages/theme/theme",
-    "pages/shopcar/shopcar"
+    "pages/order/order"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -37,8 +38,8 @@
         "text": "购物车"
       },
       {
-        "pagePath": "pages/logs/logs",
-        "text": "日志"
+        "pagePath": "pages/login/login",
+        "text": "我的"
       }
     ]
   }
